@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Jeux{% endblock %}
+
+{% block body %}
+
+<div class="listGames">
+    
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Description</th>
+     
+    <th scope="col">Durée</th>
+      <th scope="col">Nombre mini de joueurs</th>
+      <th scope="col">Nombre maxi de joueurs</th>
+       <th scope="col">Difficulté</th>
+      <th scope="col">Thème</th>
+      <th scope="col">Catégories</th>
+       <th scope="col">Mécaniques</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for bgame in bgames %}
+    <tr class="table-secondary">
+      <th scope="row"> {{bgame.name}} </th>
+      <td> {{bgame.description}} </td>     
+      <td> {{ bgame.duration }} minutes </td>
+      <td> {{ bgame.minNbPlayers }} </td>
+
+      <td> {{ bgame.maxNbPlayers }} </td>
+      <td> {{ bgame.difficulty.name }} </td>
+      <td> {{ bgame.theme.name }} </td>
+      <td> {% for c in bgame.category %}
+      {{ c.name }}
+        {% endfor %}
+      </td>
+      <td> {% for m in bgame.mechanism %}
+          {{ m.name }}
+        {% endfor %} </td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table> 
+
+</div>
+{% endblock %}

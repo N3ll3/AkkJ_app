@@ -44,29 +44,29 @@ class Bgame
     private $maxNbPlayers;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\difficulty", inversedBy="bgames")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Difficulty", inversedBy="bgames")
      * @ORM\JoinColumn(nullable=false)
      */
     private $difficulty;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\theme", inversedBy="bgames")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Theme", inversedBy="bgames")
      * @ORM\JoinColumn(nullable=false)
      */
     private $theme;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\mechanism", inversedBy="bgames")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Mechanism", inversedBy="bgames")
      */
     private $mechanism;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\category", inversedBy="bgames")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="bgames")
      */
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\player", inversedBy="bgames")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Player", inversedBy="bgames")
      */
     private $player;
 

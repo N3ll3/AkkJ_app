@@ -19,6 +19,9 @@ class BgameRepository extends ServiceEntityRepository
         parent::__construct($registry, Bgame::class);
     }
 
+
+
+
     // /**
     //  * @return Bgame[] Returns an array of Bgame objects
     //  */
