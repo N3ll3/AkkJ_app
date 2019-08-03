@@ -99,4 +99,17 @@ class AddBgameController extends AbstractController
             'addForm' => $addForm->createView()
         ]);
     }
+
+    /**
+     *
+     *@Route("/addBGGbgame", name="add_BGG_bgame")
+     */
+
+    public function addGameFromBGG(){
+
+        return $this->render('add_bgame/addBGGame.html.twig');
+
+    }
+
 }
+

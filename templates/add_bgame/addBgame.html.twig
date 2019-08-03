@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Ajouter un jeu {% endblock %}
 
 {% block body %}
 {% form_theme addForm 'bootstrap_4_layout.html.twig' %}
+
 <div class="addForm container">
-{{ form(addForm) }}
+
+{{ form(addForm, {'attr':{'id':'addForm'}}) }}
 </div>
 
 {% endblock %}

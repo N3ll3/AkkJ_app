@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/62c5c76e70.js"></script>
     <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
@@ -17,7 +18,11 @@
 
 
     <title>{% block title %}A Koi Kon Joue - AkkJ{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+
+        {{ encore_entry_link_tags('app') }}
+        <link rel="stylesheet" href="/build/app.css">
+    {% endblock %}
 </head>
 
 <body>
@@ -33,13 +38,13 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">A Koi Kon Joue ? </a>
+                        <a class="nav-link" href="{{ path('list_bgames')}}">A Koi Kon Joue ? </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('list_bgames')}}">Mes jeux</a>
+                        <a class="nav-link" href="{{ path('add_bgame')}}">Ajouter un jeu manuellement</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('add_bgame')}}">Ajouter un jeu</a>
+                        <a class="nav-link" href="{{ path('add_BGG_bgame')}}">Ajouter un jeu avec import BGG</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Mon compte</a>
@@ -50,7 +55,13 @@
 
     </header>
     {% block body %}{% endblock %}
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+
+
+            <script src="/build/runtime.js"></script>
+            <script src="/build/app.js"></script>
+    {% endblock %}
 </body>
 
 </html>

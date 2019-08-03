@@ -13,7 +13,7 @@ use App\Repository\BgameRepository;
 class ListGamesController extends AbstractController
 {
     /**
-     * @Route("/mesjeux", name="list_bgames")
+     * @Route("/", name="list_bgames")
      */
     public function listBgames(BgameRepository $bgamesRepo )
     {
