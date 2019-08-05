@@ -19,9 +19,6 @@ class ListGamesController extends AbstractController
     {
         $bgames = $bgamesRepo->findAll();
 
-
-
-
         return $this->render('list_games/myludo.html.twig', [
             'bgames' => $bgames
         ]);

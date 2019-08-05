@@ -6,23 +6,28 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-require('../css/app.css');
-
+require("../css/app.css");
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-const $ = require('jquery');
-const proxy = 'https://cors-anywhere.herokuapp.com/';
+const $ = require("jquery");
+const proxy = "https://cors-anywhere.herokuapp.com/";
 
-$('#searchBGG').submit( function(e){
-    e.preventDefault();
-    let bgameBGG = $('#bgameBGG').val();
-    $.ajax({
-        type:'GET',
-        url:proxy+'http://boardgamegeek.com/xmlapi/search',
-        data:'search='+bgameBGG,
-        success :function(data){
-
-            console.log(data);
-        }
-    })
-})
+$("#searchBGG").submit(function(e) {
+  e.preventDefault();
+  let bgameBGG = $("#bgameBGG").val();
+  $.ajax({
+    type: "GET",
+    url: proxy + "http://boardgamegeek.com/xmlapi/search",
+    data: "search=" + bgameBGG,
+    dataType: "xml",
+    success: function(data) {
+      let xmlDoc = $("boardgames", data);
+      $names = xmlDoc.find("name");
+      $.each($names, function(i, name) {
+        let liGame = document.createElement("li");
+        liGame.innerHTML = `<a href="#">${name.textContent}</a>`;
+        $("#bggame").append(liGame);
+      });
+    }
+  });
+});

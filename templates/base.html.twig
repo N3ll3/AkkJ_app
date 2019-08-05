@@ -41,11 +41,9 @@
                         <a class="nav-link" href="{{ path('list_bgames')}}">A Koi Kon Joue ? </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('add_bgame')}}">Ajouter un jeu manuellement</a>
+                        <a class="nav-link" href="{{ path('add_bgame')}}">Ajouter un jeu </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('add_BGG_bgame')}}">Ajouter un jeu avec import BGG</a>
-                    </li>
+                
                     <li class="nav-item">
                         <a class="nav-link" href="#">Mon compte</a>
                     </li>
@@ -57,8 +55,6 @@
     {% block body %}{% endblock %}
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
-
-
             <script src="/build/runtime.js"></script>
             <script src="/build/app.js"></script>
     {% endblock %}

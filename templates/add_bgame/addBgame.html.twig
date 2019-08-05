@@ -6,6 +6,20 @@
 {% block body %}
 {% form_theme addForm 'bootstrap_4_layout.html.twig' %}
 
+
+<div class="bggForm container">
+    <form action="" id="searchBGG">
+        <label for="bgg"> Rechercher un jeu sur BGG : </label>
+        <input name="search" type="text" id="bgameBGG">
+        <button  class="btn btn-primary" type="submit"> Rechercher </button>
+    </form>
+
+    <div><h2>Liste des jeux trouvés</h2>
+        <ul id="bggame"></ul>
+
+    </div>
+</div>
+
 <div class="addForm container">
 
 {{ form(addForm, {'attr':{'id':'addForm'}}) }}
