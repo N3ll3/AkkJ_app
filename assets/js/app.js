@@ -22,12 +22,17 @@ $("#searchBGG").submit(function(e) {
     dataType: "xml",
     success: function(data) {
       let xmlDoc = $("boardgames", data);
-      $names = xmlDoc.find("name");
-      $.each($names, function(i, name) {
-        let liGame = document.createElement("li");
-        liGame.innerHTML = `<a href="#">${name.textContent}</a>`;
-        $("#bggame").append(liGame);
+      $boardGames = xmlDoc.find("boardgame");
+      $.each($boardGames, function(i, boardgame) {
+        let name = boardgame.firstElementChild.textContent;
+        let objectId = boardgame.attributes[0].value;
+        let option = new Option(name, objectId);
+        $("#bggame").append(option);
       });
     }
   });
+});
+
+$("#fillForm").submit(function(e) {
+  e.preventDefault();
 });
