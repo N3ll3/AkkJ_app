@@ -12,7 +12,7 @@ require("../css/app.css");
 const $ = require("jquery");
 const proxy = "https://cors-anywhere.herokuapp.com/";
 
-$("#searchBGG").submit(function(e) {
+$("#searchBGG").submit(e => {
   e.preventDefault();
   let bgameBGG = $("#bgameBGG").val();
   $.ajax({
@@ -33,40 +33,31 @@ $("#searchBGG").submit(function(e) {
   });
 });
 
-$("#bggame").change(function() {
-  const selectedGame = $(this)
+$("#bggchoice").submit(e => {
+  const selectedGame = $("#bggame")
     .children("option:selected")
     .val();
-  console.log(selectedGame);
+  e.preventDefault();
   $.ajax({
     type: "GET",
     url:
       proxy + "https://www.boardgamegeek.com/xmlapi/boardgame/" + selectedGame,
-    success: function(data) {
-      let xmlDoc = $("boardgame", data);
-      console.log(xmlDoc.childNodes);
-      const boardGame = xmlDoc.find("boardgame");
-      const name = xmlDoc.find("name");
-      const description = xmlDoc.find("description");
-      const maxplaytime = xmlDoc.find("maxplaytime");
-      const minplayers = xmlDoc.find("minplayers");
-      const maxplayers = xmlDoc.find("maxplayers");
-      const categories = xmlDoc.find("boardgamecategory");
-      const mechanisms = xmlDoc.find("boardgamemechanic");
+    success: function(xml) {
+      const boardgameInfo = $(xml).find("boardgame");
 
-      console.log(data);
-      console.log(xmlDoc);
+      let name = $("#bggame")
+        .children("option:selected")
+        .text();
+      let description = boardgameInfo.find("description").text();
+      let duration = boardgameInfo.find("maxplaytime").text();
+      let minplayers = boardgameInfo.find("minplayers").text();
+      let maxplayers = boardgameInfo.find("maxplayers").text();
 
-      let infos = {
-        name: name.textContent,
-        description: description.textContent,
-        duration: maxplaytime.textContent,
-        minNbPlayers: minplayers.textContent,
-        maxNbPlayers: maxplayers.textContent,
-        categories: [categories.textContent],
-        mechanisms: [mechanisms.textContent]
-      };
-      console.log(infos);
+      $("#add_bgame_form_name").val(name);
+      $("#add_bgame_form_description").val(description);
+      $("#add_bgame_form_duration").val(duration);
+      $("#add_bgame_form_minNbPlayers").val(minplayers);
+      $("#add_bgame_form_maxNbPlayers").val(maxplayers);
     }
   });
 });
