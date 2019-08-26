@@ -5,6 +5,8 @@
 
 {% block body %}
 {% form_theme addForm 'bootstrap_4_layout.html.twig' %}
+{% form_theme addForm "@FOSCKEditor/Form/ckeditor_widget.html.twig" %}
+
 
 <div class="bggForm container">
     <form action="" id="searchBGG">
@@ -28,6 +30,8 @@
 <div class="addForm container">
 
 {{ form(addForm, {'attr':{'id':'addForm'}}) }}
+
 </div>
 
 {% endblock %}
+

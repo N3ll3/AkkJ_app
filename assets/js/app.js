@@ -49,12 +49,14 @@ $("#bggchoice").submit(e => {
         .children("option:selected")
         .text();
       let description = boardgameInfo.find("description").text();
+      const regex = /<br\s*[\/]?>/gi;
+      let descriptionWithoutbr = description.replace(regex, "");
       let duration = boardgameInfo.find("maxplaytime").text();
       let minplayers = boardgameInfo.find("minplayers").text();
       let maxplayers = boardgameInfo.find("maxplayers").text();
 
       $("#add_bgame_form_name").val(name);
-      $("#add_bgame_form_description").val(description);
+      $("#add_bgame_form_description").val(descriptionWithoutbr);
       $("#add_bgame_form_duration").val(duration);
       $("#add_bgame_form_minNbPlayers").val(minplayers);
       $("#add_bgame_form_maxNbPlayers").val(maxplayers);
