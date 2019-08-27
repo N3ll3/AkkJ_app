@@ -52,30 +52,36 @@ $("#bggchoice").submit(e => {
     data: "id=" + selectedGame + "&type=boardgame",
     success: function(xml) {
       //parser du xml recu
-      $(xml).find("item");
 
-      let description = $(xml)
+      // recup Name
+      let name = $("#bggame")
+        .children("option:selected")
+        .text();
+
+      //vide le select
+      $("#bggame option").each(function() {
+        $(this).remove();
+      });
+
+      const description = $(xml)
         .find("description")
         .text();
-      let duration = $(xml)
+
+      const duration = $(xml)
         .find("playingtime")
         .attr("value");
-      let minplayers = $(xml)
+
+      const minplayers = $(xml)
         .find("minplayers")
         .attr("value");
-      let maxplayers = $(xml)
+
+      const maxplayers = $(xml)
         .find("maxplayers")
         .attr("value");
-      const categories = [];
-      $(xml)
-        .find("link")
-        .each(function() {
-          const type = $(this).attr("type");
-          if (type == "boardgamecategory") {
-            const category = $(this).attr("value");
-            categories.push(category);
-          }
-        });
+
+      const difficulty = $(xml)
+        .find("minage")
+        .attr("value");
 
       const mechanisms = [];
       $(xml)
@@ -88,21 +94,24 @@ $("#bggchoice").submit(e => {
           }
         });
 
+      const categories = [];
+      $(xml)
+        .find("link")
+        .each(function() {
+          const type = $(this).attr("type");
+          if (type == "boardgamecategory") {
+            const category = $(this).attr("value");
+            categories.push(category);
+          }
+        });
+
       // pre remplissage des donnees dans formulaire
-
-      // Name
-      let name = $("#bggame")
-        .children("option:selected")
-        .text();
-
-      //vide le select
-      $("#bggame option").each(function() {
-        $(this).remove();
-      });
 
       //Description
       const regex = /<br\s*[\/]?>/gi;
       let descriptionWithoutbr = description.replace(regex, "");
+
+      //Name
       $("#add_bgame_form_name").val(name);
       const instance_name = "add_bgame_form_description";
       CKEDITOR.instances[instance_name].insertHtml(
@@ -114,6 +123,25 @@ $("#bggchoice").submit(e => {
       // Min et Max Players
       $("#add_bgame_form_minNbPlayers").val(minplayers);
       $("#add_bgame_form_maxNbPlayers").val(maxplayers);
+
+      // Difficulty
+      if (difficulty < 7) {
+        $("#add_bgame_form_difficulty")
+          .children("option[value=1]")
+          .prop("selected", true);
+      } else if (difficulty >= 7 && difficulty < 12) {
+        $("#add_bgame_form_difficulty")
+          .children("option[value=2]")
+          .prop("selected", true);
+      } else if (difficulty >= 12 && difficulty < 14) {
+        $("#add_bgame_form_difficulty")
+          .children("option[value=3]")
+          .prop("selected", true);
+      } else {
+        $("#add_bgame_form_difficulty")
+          .children("option[value=4]")
+          .prop("selected", true);
+      }
 
       // Mechanism
       const MechanismLabelsName = new Object();
