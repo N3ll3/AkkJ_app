@@ -50,12 +50,6 @@ class Bgame
     private $difficulty;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Theme", inversedBy="bgames")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $theme;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Mechanism", inversedBy="bgames")
      */
     private $mechanism;
@@ -154,17 +148,6 @@ class Bgame
         return $this;
     }
 
-    public function getTheme(): ?theme
-    {
-        return $this->theme;
-    }
-
-    public function setTheme(?theme $theme): self
-    {
-        $this->theme = $theme;
-
-        return $this;
-    }
 
     /**
      * @return Collection|mechanism[]

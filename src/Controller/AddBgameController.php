@@ -7,16 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Bgame;
-use App\Entity\Category;
-use App\Entity\Difficulty;
-use App\Entity\Theme;
-use App\Entity\Mechanism;
 use App\Form\AddBgameFormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\DateIntervalType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AddBgameController extends AbstractController
 {
