@@ -51,16 +51,6 @@ $("#bggchoice").submit(e => {
     url: proxy + "https://www.boardgamegeek.com/xmlapi2/thing",
     data: "id=" + selectedGame + "&type=boardgame",
     success: function(xml) {
-      // recup du nom
-      let name = $("#bggame")
-        .children("option:selected")
-        .text();
-
-      //vide le select
-      $("#bggame option").each(function() {
-        $(this).remove();
-      });
-
       //parser du xml recu
       $(xml).find("item");
 
@@ -76,7 +66,6 @@ $("#bggchoice").submit(e => {
       let maxplayers = $(xml)
         .find("maxplayers")
         .attr("value");
-
       const categories = [];
       $(xml)
         .find("link")
@@ -88,22 +77,30 @@ $("#bggchoice").submit(e => {
           }
         });
 
-      const labelsName = new Object();
-      $("#add_bgame_form_category .form-check-label").each(function() {
-        const labelName = $(this).text();
-        const labelFor = $(this)[0].htmlFor;
-        labelsName[labelName] = labelFor;
-      });
-      for (label in labelsName) {
-        categories.forEach(category => {
-          if (category == label) {
-            let id = labelsName[label];
-            $(`#${id}`).prop("checked", true);
+      const mechanisms = [];
+      $(xml)
+        .find("link")
+        .each(function() {
+          const type = $(this).attr("type");
+          if (type == "boardgamemechanic") {
+            const mechanic = $(this).attr("value");
+            mechanisms.push(mechanic);
           }
         });
-      }
 
       // pre remplissage des donnees dans formulaire
+
+      // Name
+      let name = $("#bggame")
+        .children("option:selected")
+        .text();
+
+      //vide le select
+      $("#bggame option").each(function() {
+        $(this).remove();
+      });
+
+      //Description
       const regex = /<br\s*[\/]?>/gi;
       let descriptionWithoutbr = description.replace(regex, "");
       $("#add_bgame_form_name").val(name);
@@ -111,13 +108,46 @@ $("#bggchoice").submit(e => {
       CKEDITOR.instances[instance_name].insertHtml(
         `<p>${descriptionWithoutbr}</p>`
       );
+      //Duration
       $("#add_bgame_form_duration").val(duration);
+
+      // Min et Max Players
       $("#add_bgame_form_minNbPlayers").val(minplayers);
       $("#add_bgame_form_maxNbPlayers").val(maxplayers);
 
-      // categories.each(function (category) {
+      // Mechanism
+      const MechanismLabelsName = new Object();
+      $("#add_bgame_form_mechanism .form-check-label").each(function() {
+        const labelName = $(this).text();
+        const labelFor = $(this)[0].htmlFor;
+        MechanismLabelsName[labelName] = labelFor;
+      });
 
-      // });
+      for (label in MechanismLabelsName) {
+        mechanisms.forEach(mechanism => {
+          if (mechanism == label) {
+            let id = MechanismLabelsName[label];
+            $(`#${id}`).prop("checked", true);
+          }
+        });
+      }
+
+      // Category
+      const CategoryLabelsName = new Object();
+      $("#add_bgame_form_category .form-check-label").each(function() {
+        const labelName = $(this).text();
+        const labelFor = $(this)[0].htmlFor;
+        CategoryLabelsName[labelName] = labelFor;
+      });
+
+      for (label in CategoryLabelsName) {
+        categories.forEach(category => {
+          if (category == label) {
+            let id = CategoryLabelsName[label];
+            $(`#${id}`).prop("checked", true);
+          }
+        });
+      }
     }
   });
 });
