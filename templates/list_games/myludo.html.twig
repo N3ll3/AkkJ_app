@@ -16,7 +16,6 @@
       <th scope="col">Nombre mini de joueurs</th>
       <th scope="col">Nombre maxi de joueurs</th>
        <th scope="col">Difficulté</th>
-      <th scope="col">Thème</th>
       <th scope="col">Catégories</th>
        <th scope="col">Mécaniques</th>
     </tr>
@@ -28,10 +27,8 @@
       <td> {{bgame.description}} </td>     
       <td> {{ bgame.duration }} minutes </td>
       <td> {{ bgame.minNbPlayers }} </td>
-
       <td> {{ bgame.maxNbPlayers }} </td>
-      <td> {{ bgame.difficulty.name }} </td>
-      <td> {{ bgame.theme.name }} </td>
+      <td> {{ bgame.difficulty.name }} </td
       <td> {% for c in bgame.category %}
       {{ c.name }}
         {% endfor %}

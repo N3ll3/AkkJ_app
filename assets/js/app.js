@@ -54,7 +54,7 @@ $("#bggchoice").submit(e => {
       //parser du xml recu
 
       // recup Name
-      let name = $("#bggame")
+      const name = $("#bggame")
         .children("option:selected")
         .text();
 
@@ -62,6 +62,10 @@ $("#bggchoice").submit(e => {
       $("#bggame option").each(function() {
         $(this).remove();
       });
+
+      const image = $(xml)
+        .find("image")
+        .text();
 
       const description = $(xml)
         .find("description")
@@ -117,6 +121,13 @@ $("#bggchoice").submit(e => {
       CKEDITOR.instances[instance_name].insertHtml(
         `<p>${descriptionWithoutbr}</p>`
       );
+
+      //image
+      console.log(image);
+      $("#add_bgame_form_Image").val(image);
+      const imgView = `<img src=${image} alt="image boardgame" width=50>`;
+      $("#add_bgame_form .form-group:nth-child(2)").append(imgView);
+
       //Duration
       $("#add_bgame_form_duration").val(duration);
 
