@@ -35,5 +35,4 @@ class AddBgameController extends AbstractController
             'addForm' => $addForm->createView()
         ]);
     }
-
 }

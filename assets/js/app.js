@@ -21,22 +21,37 @@ const proxy = "http://localhost:8080/";
 $("#searchBGG").submit(e => {
   e.preventDefault();
   let bgameBGG = $("#bgameBGG").val();
+
+  // TODO : refacto avec function clearSelect()
+  $("#bggame option").each(function() {
+    $(this).remove();
+  });
+
   $.ajax({
     type: "GET",
     url: proxy + "http://boardgamegeek.com/xmlapi2/search",
     data: "query=" + bgameBGG,
     dataType: "xml",
     success: function(data) {
-      $(data)
-        .find("item")
-        .each(function() {
-          let id = $(this).attr("id");
-          let name = $(this)
-            .find("name")
-            .attr("value");
-          let option = new Option(name, id);
-          $("#bggame").append(option);
-        });
+      if (
+        $(data)
+          .find("items")
+          .attr("total") == 0
+      ) {
+        let option = new Option("Aucun résultat");
+        $("#bggame").append(option);
+      } else {
+        $(data)
+          .find("item")
+          .each(function() {
+            let id = $(this).attr("id");
+            let name = $(this)
+              .find("name")
+              .attr("value");
+            let option = new Option(name, id);
+            $("#bggame").append(option);
+          });
+      }
     }
   });
 });
@@ -58,10 +73,11 @@ $("#bggchoice").submit(e => {
         .children("option:selected")
         .text();
 
-      //vide le select
+      //// TODO : refacto avec function clearSelect()
       $("#bggame option").each(function() {
         $(this).remove();
       });
+      $("#imageBgame").remove();
 
       const image = $(xml)
         .find("image")
@@ -123,9 +139,8 @@ $("#bggchoice").submit(e => {
       );
 
       //image
-      console.log(image);
       $("#add_bgame_form_Image").val(image);
-      const imgView = `<img src=${image} alt="image boardgame" width=50>`;
+      const imgView = `<img src=${image} alt="image boardgame" width=50 id="imageBgame">`;
       $("#add_bgame_form .form-group:nth-child(2)").append(imgView);
 
       //Duration

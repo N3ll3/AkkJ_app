@@ -24,11 +24,11 @@
   {% for bgame in bgames %}
     <tr class="table-secondary">
       <th scope="row"> {{bgame.name}} </th>
-      <td> {{bgame.description}} </td>     
+      <td> {{bgame.description | raw}} </td>     
       <td> {{ bgame.duration }} minutes </td>
       <td> {{ bgame.minNbPlayers }} </td>
       <td> {{ bgame.maxNbPlayers }} </td>
-      <td> {{ bgame.difficulty.name }} </td
+      <td> {{ bgame.difficulty.name }} </td>
       <td> {% for c in bgame.category %}
       {{ c.name }}
         {% endfor %}
