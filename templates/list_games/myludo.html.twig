@@ -23,7 +23,7 @@
   <tbody>
   {% for bgame in bgames %}
     <tr class="table-secondary">
-      <th scope="row"> {{bgame.name}} </th>
+      <th scope="row"> <a href="{{ path('show_one_bgame', {'id': bgame.id}) }}"> {{bgame.name}}</a> </th>
       <td> {{bgame.description | raw}} </td>     
       <td> {{ bgame.duration }} minutes </td>
       <td> {{ bgame.minNbPlayers }} </td>
