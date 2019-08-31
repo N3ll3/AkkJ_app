@@ -1,0 +1,20 @@
+{
+    "base_url": "",
+    "routes": {
+        "ajax_request_xml": {
+            "tokens": [
+                ["text", "\/ajaxRequestXml"]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [],
+            "schemes": []
+        }
+    },
+    "prefix": "",
+    "host": "localhost",
+    "port": "",
+    "scheme": "http",
+    "locale": []
+}

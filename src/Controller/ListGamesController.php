@@ -15,12 +15,14 @@ class ListGamesController extends AbstractController
     /**
      * @Route("/", name="list_bgames")
      */
-    public function listBgames(BgameRepository $bgamesRepo )
+
+    public function listBgames(BgameRepository $bgamesRepo)
     {
-        $bgames = $bgamesRepo->findAll();
+
+        $allBgames = $bgamesRepo->findAll();
 
         return $this->render('list_games/myludo.html.twig', [
-            'bgames' => $bgames
+            'bgames' => $allBgames
         ]);
     }
 }

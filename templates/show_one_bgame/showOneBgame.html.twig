@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{bgame.name}}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+<section class="row align-items-center">
+  <div id="image" class="col-sm-5">   
+    <img src="{{bgame.image}}" id="image" class="img-fluid img-thumbnail">
+  </div>
+
+  <div id="infos" class="col-sm-7">
+
+   <h1 class="text-center">{{bgame.name}}</h1>
+  <p>Jeu {{bgame.difficulty.name}}</p>
+  <p>Durée: {{bgame.duration}} minutes </p>
+  <p>Nombre de joueurs : {{ bgame.minNbPlayers }} à {{ bgame.maxNbPlayers }} joueurs</p>
+
+<div>
+  <p>
+    <h3>Catégories</h3>
+    <ul class="list-group list-group-horizontal">
+      {% for c in bgame.category %}
+      <li class="list-group-item list-group-item-action"> {{c.name}}</li>
+      {% endfor %}
+     </ul>
+  </p>
+
+  <p>
+    <h3>Mécaniques</h3>
+      <ul class="list-group list-group-horizontal">
+        {% for m in bgame.mechanism %}
+        <li class="list-group-item list-group-item-action"> {{m.name}}</li>
+      {% endfor %}
+      </ul>
+  </p>
+</div>
+  </div>
+</section>
+
+<br>
+
+<div id="description">{{bgame.description | raw}}</div>
+
+</div>
+
+
+{% endblock %}
