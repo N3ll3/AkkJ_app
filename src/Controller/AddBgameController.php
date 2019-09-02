@@ -9,7 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Bgame;
 use App\Form\AddBgameFormType;
 use App\Repository\BgameRepository;
-use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class AddBgameController extends AbstractController
 {

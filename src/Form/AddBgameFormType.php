@@ -12,7 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use App\Entity\Category;
 use App\Entity\Difficulty;
-use App\Entity\Theme;
 use App\Entity\Mechanism;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 

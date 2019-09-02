@@ -11,16 +11,9 @@ class Filter
     /**
      * 
      *
-     * @var string|null
-     */
-    private $name;
-
-    /**
-     * 
-     *
      * @var int|null
      */
-    private $duration;
+    private $maxDuration;
 
     /**
      * 
@@ -46,76 +39,42 @@ class Filter
     /**
      * 
      *
-     * @var string|null
+     * @var Collection|null
      */
     private $category;
 
     /**
      * 
      *
-     * @var string|null
+     * @var Collection|null
      */
     private $mechanism;
 
 
 
-    public function __construct()
-    {
-        $this->mechanism = new ArrayCollection();
-        $this->category = new ArrayCollection();
-    }
-
-
-
-
     /**
-     * Get the value of name
-     *
-     * @return  string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set the value of name
-     *
-     * @param  string|null  $name
-     *
-     * @return  self
-     */
-    public function setName($name): Filter
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of duration
+     * Get the value of maxDuration
      *
      * @return  int|null
      */
-    public function getDuration(): ?int
+    public function getMaxDuration()
     {
-        return $this->duration;
+        return $this->maxDuration;
     }
 
     /**
-     * Set the value of duration
+     * Set the value of maxDuration
      *
-     * @param  int|null  $duration
+     * @param  int|null  $maxDuration
      *
      * @return  self
      */
-    public function setDuration($duration): Filter
+    public function setMaxDuration($maxDuration)
     {
-        $this->duration = $duration;
+        $this->maxDuration = $maxDuration;
 
         return $this;
     }
-
     /**
      * Get the value of minPlayers
      *
@@ -191,7 +150,7 @@ class Filter
     /**
      * Get the value of category
      *
-     * @return  @return Collection|category[]|null
+     * @return  Collection|null
      */
     public function getCategory(): ?Collection
     {
@@ -201,15 +160,13 @@ class Filter
     /**
      * Set the value of category
      *
-     * @param  string|null  $category
+     * @param  Collection|null  $category
      *
      * @return  self
      */
-    public function setCategory($category): Filter
+    public function setCategory($category)
     {
-        if (!$this->category->contains($category)) {
-            $this->category[] = $category;
-        }
+        $this->category = $category;
 
         return $this;
     }
@@ -217,7 +174,7 @@ class Filter
     /**
      * Get the value of mechanism
      *
-     * @return  Collection|mechanism[]|null
+     * @return  Collection|null
      */
     public function getMechanism(): ?Collection
     {
@@ -227,15 +184,13 @@ class Filter
     /**
      * Set the value of mechanism
      *
-     * @param  string|null  $mechanism
+     * @param  Collection|null  $mechanism
      *
      * @return  self
      */
-    public function setMechanism($mechanism): Filter
+    public function setMechanism($mechanism)
     {
-        if (!$this->mechanism->contains($mechanism)) {
-            $this->mechanism[] = $mechanism;
-        }
+        $this->mechanism = $mechanism;
 
         return $this;
     }
