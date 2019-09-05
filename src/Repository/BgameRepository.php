@@ -51,19 +51,20 @@ class BgameRepository extends ServiceEntityRepository
                 ->setParameter('difficulty', $filter->getDifficulty());
         }
 
-        // if ($filter->getMechanism()) {
+        if ($filter->getMechanism()) {
 
-        //     $query = $query
-        //         ->andWhere('b.mechanism = :id')
-        //         ->setParameter('id', $filter->getMechanism());
-        // }
+            $query = $query
+                // ->join('bgame_mechanism', 'bm')
+                ->andWhere('b.mechanism = :id')
+                ->setParameter('id', $filter->getMechanism());
+        }
 
-        // if ($filter->getCategory()) {
+        if ($filter->getCategory()) {
 
-        //     $query = $query
-        //         ->andWhere('b.category = :id')
-        //         ->setParameter('id', $filter->getCategory());
-        // }
+            $query = $query
+                ->andWhere('b.category = :id')
+                ->setParameter('id', $filter->getCategory());
+        }
 
         return $query->getQuery()
             ->getResult();

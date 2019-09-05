@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Ajouter un jeu {% endblock %}
+{% block title %}Add a Boarding Game {% endblock %}
 
 {% block body %}
 {% form_theme addForm 'bootstrap_4_layout.html.twig' %}
@@ -10,25 +10,25 @@
 
 <div class="bggForm container">
     <form action="" id="searchBGG">
-        <label for="bgg"> Rechercher un jeu sur BGG : </label>
+        <label for="bgg"> Looking on BGG : </label>
         <input name="search" type="text" id="bgameBGG">
-        <button  class="btn btn-primary" type="submit"> Rechercher </button>
+        <button  class="btn btn-primary" type="submit"> Search </button>
     </form>
 
 <form action="" id="bggchoice" method="post">
   <p>
-    <label for="bggame">Liste des jeux trouvés</label></br>
+    <label for="bggame">Boarding Games Find :</label></br>
         <select name="bggame" id="bggame">
         </select>
       <input type="hidden" name="_method" value="PUT"/>
-     <button type="submit" class="btn btn-primary" id="fillForm"> Remplir </button>   
+     <button type="submit" class="btn btn-primary" id="fillForm"> Fill the form </button>   
   </p>  
 </form>
 </div>
 {% if bgameExist %}
 <div class="alert alert-dismissible alert-danger">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <p>Le jeu <strong> {{bgameName}} </strong>  existe déjà dans votre ludothèque</p>
+  <p>The game <strong> {{bgameName}} </strong>  is already in your ludo</p>
  
 </div>
 

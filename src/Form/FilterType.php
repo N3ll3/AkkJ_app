@@ -25,7 +25,7 @@ class FilterType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'attr' => [
-                        'placeholder' => 'Durée max en minutes'
+                        'placeholder' => 'How much time?'
                     ]
                 ]
             )

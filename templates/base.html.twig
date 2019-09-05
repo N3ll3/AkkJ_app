@@ -39,21 +39,21 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('list_bgames')}}">Ma Ludothèque </a>
+                        <a class="nav-link" href="{{ path('list_bgames')}}">My Ludo </a>
                     </li>
             
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('add_bgame')}}">Ajouter un jeu </a>
+                        <a class="nav-link" href="{{ path('add_bgame')}}">Add a boarding game </a>
                     </li>
             
             
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Mon compte</a>
+                        <a class="nav-link" href="#">My account</a>
                     </li>
                 </ul>
                 <form method="POST" action="{{path('simple_search')}}" class="form-inline">
                     <label for="search"></label>
-                    <input type="text" id="search" placeholder="Chercher un jeu">
+                    <input type="text" id="search" placeholder="Looking for a game">
                     <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i> </button>
                 </form>
 
