@@ -26,6 +26,7 @@ class Category
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Bgame", mappedBy="category")
      */
+    
     private $bgames;
 
     public function __construct()
@@ -77,4 +78,6 @@ class Category
 
         return $this;
     }
+
+
 }

@@ -29,7 +29,7 @@ class Bgame
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $duration;
 
@@ -157,7 +157,7 @@ class Bgame
     /**
      * @return Collection|mechanism[]
      */
-    public function getMechanism(): Collection
+    public function getMechanism(): ?Collection
     {
         return $this->mechanism;
     }
@@ -183,7 +183,7 @@ class Bgame
     /**
      * @return Collection|category[]
      */
-    public function getCategory(): Collection
+    public function getCategory(): ?Collection
     {
         return $this->category;
     }

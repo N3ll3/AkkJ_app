@@ -25,31 +25,19 @@ class FilterType extends AbstractType
                     'required' => false,
                     'label' => false,
                     'attr' => [
-                        'placeholder' => 'Durée max'
+                        'placeholder' => 'Durée max en minutes'
                     ]
-
                 ]
             )
+
             ->add(
-                'minPlayers',
+                'nbPlayers',
                 IntegerType::class,
                 [
                     'required' => false,
                     'label' => false,
                     'attr' => [
-                        'placeholder' => 'Minimum de joueurs'
-                    ]
-
-                ]
-            )
-            ->add(
-                'maxPlayers',
-                IntegerType::class,
-                [
-                    'required' => false,
-                    'label' => false,
-                    'attr' => [
-                        'placeholder' => 'Max de joueurs'
+                        'placeholder' => 'How many are you?'
                     ]
 
                 ]
@@ -59,7 +47,9 @@ class FilterType extends AbstractType
                 EntityType::class,
                 [
                     'class' => Difficulty::class,
-                    'choice_label' => 'Difficulté',
+                    'placeholder' => 'Choose a difficulty',
+                    'choice_label' => 'name',
+                    'required' => false
                 ]
             )
 
@@ -68,9 +58,11 @@ class FilterType extends AbstractType
                 EntityType::class,
                 [
                     'class' => Mechanism::class,
+                    'placeholder' => 'Choose a mechanism',
                     'choice_label' => 'name',
-                    'multiple' => true,
+                    'multiple' => false,
                     'expanded' => false,
+                    'required' => false
                 ]
             )
             ->add(
@@ -78,12 +70,13 @@ class FilterType extends AbstractType
                 EntityType::class,
                 [
                     'class' => Category::class,
+                    'placeholder' => 'Choose a category',
                     'choice_label' => 'name',
-                    'multiple' => true,
+                    'multiple' => false,
                     'expanded' => false,
+                    'required' => false
                 ]
-            )
-            ->add('A koi kon Joue ?', SubmitType::class);
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -93,5 +86,10 @@ class FilterType extends AbstractType
             'method' => 'get',
             'csrf_protection' => false
         ]);
+    }
+
+    public function getBlockPrefix()
+    {
+        return '';
     }
 }
