@@ -51,11 +51,13 @@ class Bgame
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Mechanism", inversedBy="bgames")
+     * @ORM\JoinTable(name="bgame_mechanism")
      */
     private $mechanism;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="bgames")
+     * @ORM\JoinTable(name="bgame_category")
      */
     private $category;
 

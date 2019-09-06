@@ -7,6 +7,7 @@ use App\Entity\Filter;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Collections\Criteria;
 
 
 /**
@@ -22,7 +23,6 @@ class BgameRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Bgame::class);
     }
-
 
 
     /**
@@ -42,7 +42,8 @@ class BgameRepository extends ServiceEntityRepository
         }
         if ($filter->getNbPlayers()) {
             $query = $query
-                ->andWhere('b.minNbPlayers >= :nbPlayers')
+                ->andWhere('b.minNbPlayers <= :nbPlayers')
+                ->andWhere('b.maxNbPlayers >= :nbPlayers')
                 ->setParameter('nbPlayers', $filter->getNbPlayers());
         }
         if ($filter->getDifficulty()) {
@@ -52,19 +53,17 @@ class BgameRepository extends ServiceEntityRepository
         }
 
         if ($filter->getMechanism()) {
-
             $query = $query
-                // ->join('bgame_mechanism', 'bm')
-                ->andWhere('b.mechanism = :id')
-                ->setParameter('id', $filter->getMechanism());
+                ->andWhere(':id_Mechanism MEMBER OF b.mechanism')
+                ->setParameter('id_Mechanism', $filter->getMechanism());
         }
 
         if ($filter->getCategory()) {
-
             $query = $query
-                ->andWhere('b.category = :id')
-                ->setParameter('id', $filter->getCategory());
+                ->andWhere(':id_category MEMBER OF b.category')
+                ->setParameter('id_category', $filter->getCategory());
         }
+        dump($query);
 
         return $query->getQuery()
             ->getResult();
