@@ -9,7 +9,7 @@ use App\Repository\BgameRepository;
 
 
 class ListGamesController extends AbstractController
-{
+{ 
     /**
      * @Route("/list-bgames", name="list_bgames")
      */

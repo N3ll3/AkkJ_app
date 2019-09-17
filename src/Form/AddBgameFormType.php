@@ -69,7 +69,7 @@ class AddBgameFormType extends AbstractType
                     'expanded' => true,
                 ]
             )
-            ->add('Ajouter', SubmitType::class);
+            ->add('Add', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

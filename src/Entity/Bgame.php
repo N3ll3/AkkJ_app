@@ -61,10 +61,6 @@ class Bgame
      */
     private $category;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Player", inversedBy="bgames")
-     */
-    private $player;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -203,32 +199,6 @@ class Bgame
     {
         if ($this->category->contains($category)) {
             $this->category->removeElement($category);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|player[]
-     */
-    public function getPlayer(): Collection
-    {
-        return $this->player;
-    }
-
-    public function addPlayer(player $player): self
-    {
-        if (!$this->player->contains($player)) {
-            $this->player[] = $player;
-        }
-
-        return $this;
-    }
-
-    public function removePlayer(player $player): self
-    {
-        if ($this->player->contains($player)) {
-            $this->player->removeElement($player);
         }
 
         return $this;

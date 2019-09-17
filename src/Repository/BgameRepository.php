@@ -54,8 +54,8 @@ class BgameRepository extends ServiceEntityRepository
 
         if ($filter->getMechanism()) {
             $query = $query
-                ->andWhere(':id_Mechanism MEMBER OF b.mechanism')
-                ->setParameter('id_Mechanism', $filter->getMechanism());
+                ->andWhere(':id_mechanism MEMBER OF b.mechanism')
+                ->setParameter('id_mechanism', $filter->getMechanism());
         }
 
         if ($filter->getCategory()) {
