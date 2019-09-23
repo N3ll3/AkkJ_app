@@ -26,7 +26,7 @@ class RegistrationType extends AbstractType
                 [
                     'MEMBER' => 'ROLE_USER',
                     'ADMINISTRATOR' => 'ROLE_ADMIN',
-                    'GOD' => 'ROLE_SUPER_ADMIN'
+                    'GODDESS' => 'ROLE_SUPER_ADMIN'
                 ],
 
                 'required'  => true,

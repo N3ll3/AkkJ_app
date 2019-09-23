@@ -14,7 +14,7 @@ use App\Repository\BgameRepository;
 class AddBgameController extends AbstractController
 {
     /**
-     * @Route("/addBgame", name="add_bgame")
+     * @Route("/admin/addBgame", name="add_bgame")
      */
     public function addBgameForm(Request $request, ObjectManager $manager, BgameRepository $repo)
     {

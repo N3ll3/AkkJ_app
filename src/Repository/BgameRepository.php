@@ -63,7 +63,6 @@ class BgameRepository extends ServiceEntityRepository
                 ->andWhere(':id_category MEMBER OF b.category')
                 ->setParameter('id_category', $filter->getCategory());
         }
-        dump($query);
 
         return $query->getQuery()
             ->getResult();

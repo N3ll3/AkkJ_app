@@ -11,7 +11,7 @@ use App\Repository\BgameRepository;
 class ListGamesController extends AbstractController
 { 
     /**
-     * @Route("/list-bgames", name="list_bgames")
+     * @Route("/admin/list-bgames", name="list_bgames")
      */
 
     public function listBgames(BgameRepository $bgamesRepo, Request $request)
