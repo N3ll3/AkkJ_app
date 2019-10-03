@@ -14,7 +14,7 @@ class ListGamesController extends AbstractController
      * @Route("/admin/list-bgames", name="list_bgames")
      */
 
-    public function listBgames(BgameRepository $bgamesRepo, Request $request)
+    public function listBgames(BgameRepository $bgamesRepo)
     {
         $allBgames = $bgamesRepo->findAll();
 

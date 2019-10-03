@@ -38,6 +38,10 @@
       <td> {% for m in bgame.mechanism %}
           {{ m.name }}
         {% endfor %} </td>
+        <td class='btn-group-vertical align-items-center '>
+        <button id="modify" data-id={{bgame.id}} type="submit" class="btn btn-primary">Modifier</button>
+        <button id="delete" data-id={{bgame.id}} type="submit" class="btn btn-danger">Supprimer</button>
+        </td>
     </tr>
    {% endfor %}
   </tbody>

@@ -7,7 +7,7 @@ use App\Entity\Filter;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use Doctrine\Common\Collections\Criteria;
+
 
 
 /**
@@ -33,7 +33,6 @@ class BgameRepository extends ServiceEntityRepository
     {
 
         $query = $this->createQueryBuilder('b');
-
 
         if ($filter->getMaxDuration()) {
             $query = $query
@@ -67,4 +66,14 @@ class BgameRepository extends ServiceEntityRepository
         return $query->getQuery()
             ->getResult();
     }
+
+
+    public function deleteBgame($bgame_id)
+    {
+        $query = $this->createQueryBuilder('b');
+        $query->delete('Bgame', 'b')
+            ->where('b.id = :bgame_id')
+            ->setParameter('bgame_id', $bgame_id);
+    }
+    
 }
