@@ -7,11 +7,11 @@
 
 // any CSS you require will output into a single css file (app.css in this case)
 require("../css/app.css");
-// const routes = require("../../public/js/fos_js_routes.json");
-// import Routing from "../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js";
 
-// Routing.setRoutingData(routes);
-// Routing.generate("rep_log_list");
+const routes = require("../../public/js/fos_js_routes.json");
+import Routing from "../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js";
+
+Routing.setRoutingData(routes);
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require("jquery");
@@ -86,7 +86,7 @@ $("#bggchoice").submit(e => {
       const description = $(xml)
         .find("description")
         .text();
-
+      console.log(xml, description);
       const duration = $(xml)
         .find("playingtime")
         .attr("value");
@@ -171,13 +171,14 @@ $("#bggchoice").submit(e => {
 
       // Mechanism
       const MechanismLabelsName = new Object();
+
       $("#add_bgame_form_mechanism .form-check-label").each(function() {
         const labelName = $(this).text();
         const labelFor = $(this)[0].htmlFor;
         MechanismLabelsName[labelName] = labelFor;
       });
 
-      for (label in MechanismLabelsName) {
+      for (let label in MechanismLabelsName) {
         mechanisms.forEach(mechanism => {
           if (mechanism == label) {
             let id = MechanismLabelsName[label];
@@ -194,7 +195,7 @@ $("#bggchoice").submit(e => {
         CategoryLabelsName[labelName] = labelFor;
       });
 
-      for (label in CategoryLabelsName) {
+      for (let label in CategoryLabelsName) {
         categories.forEach(category => {
           if (category == label) {
             let id = CategoryLabelsName[label];

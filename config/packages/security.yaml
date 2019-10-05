@@ -1,6 +1,5 @@
 security:
   encoders:
-    FOS\UserBundle\Model\UserInterface: bcrypt
     App\Entity\User:
       algorithm: auto
 
@@ -10,9 +9,6 @@ security:
 
   # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
   providers:
-    fos_userbundle:
-      id: fos_user.user_provider.username
-    # used to reload user from session & other features (e.g. switch_user)
     app_user_provider:
       entity:
         class: App\Entity\User
@@ -24,10 +20,6 @@ security:
       security: false
     main:
       pattern: ^/
-      form_login:
-        provider: fos_userbundle
-        csrf_token_generator: security.csrf.token_manager
-
       logout: true
       anonymous: true
 

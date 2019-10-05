@@ -71,9 +71,11 @@ class BgameRepository extends ServiceEntityRepository
     public function deleteBgame($bgame_id)
     {
         $query = $this->createQueryBuilder('b');
-        $query->delete('Bgame', 'b')
+        $query->delete()
             ->where('b.id = :bgame_id')
             ->setParameter('bgame_id', $bgame_id);
+
+        return $query->getQuery()
+            ->getResult();
     }
-    
 }
