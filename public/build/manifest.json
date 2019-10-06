@@ -5,7 +5,6 @@
   "build/runtime.js": "/build/runtime.js",
   "build/vendors~_tmp_copy.js": "/build/vendors~_tmp_copy.js",
   "build/vendors~app~myludo.js": "/build/vendors~app~myludo.js",
-  "build/vendors~myludo.js": "/build/vendors~myludo.js",
   "build/ckeditor/adapters/jquery.js": "/build/ckeditor/adapters/jquery.js",
   "build/ckeditor/ckeditor.js": "/build/ckeditor/ckeditor.js",
   "build/ckeditor/config.js": "/build/ckeditor/config.js",
@@ -2653,5 +2652,6 @@
   "build/ckeditor/skins/moono/readme.md": "/build/ckeditor/skins/moono/readme.md",
   "build/ckeditor/skins/moono/skin.js": "/build/ckeditor/skins/moono/skin.js",
   "build/ckeditor/styles.js": "/build/ckeditor/styles.js",
-  "build/vendors~app.js": "/build/vendors~app.js"
+  "build/vendors~myludo.js": "/build/vendors~myludo.js",
+  "build/app~myludo.js": "/build/app~myludo.js"
 }

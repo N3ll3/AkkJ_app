@@ -78,7 +78,13 @@
   {% for bgame in bgames %}
     <tr class="table-secondary">
       <th scope="row"> <a href="{{ path('show_one_bgame', {'id': bgame.id}) }}"> {{bgame.name}}</a> </th>
-      <td> <img src="{{bgame.image}}" id="image" class="img-fluid img-thumbnail" width=100> </td>     
+      <td> 
+       {% if bgame.imagePerso %}
+      <img src="{{asset('uploads/images/'~ bgame.imagePerso)}}" id="image" class="img-fluid img-thumbnail" width=100>
+      {% else %}
+      <img src="{{bgame.imageBgg}}" id="image" class="img-fluid img-thumbnail" width=100>
+      {% endif %}
+      </td>     
       <td> {{ bgame.duration }} minutes </td>
       <td> {{ bgame.minNbPlayers }} </td>
       <td> {{ bgame.maxNbPlayers }} </td>

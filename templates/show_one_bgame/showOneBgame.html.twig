@@ -6,9 +6,18 @@
 
 <div class="container">
 
+<div class='text-center m-2' id='admin'>
+ <a class="btn btn-primary modify" href="{{path('modify_bgame',{'id':bgame.id})}}">Modify</a> 
+ <button data-id={{bgame.id}} type="submit" class="btn btn-danger delete">Delete</button>
+</div>
+
 <section class="row align-items-center">
   <div id="image" class="col-sm-5">   
-    <img src="{{bgame.image}}" id="image" class="img-fluid img-thumbnail">
+  {% if bgame.imagePerso %}
+    <img src="{{ asset('uploads/images/'~ bgame.imagePerso) }}" id="image" class="img-fluid img-thumbnail">
+  {% else %}
+  <img src="{{bgame.imageBgg}}" id="image" class="img-fluid img-thumbnail">
+  {% endif %}
   </div>
 
   <div id="infos" class="col-sm-7">

@@ -1,1 +1,33 @@
-{"base_url":"","routes":{"delete_bgame":{"tokens":[["variable","\/","[^\/]++","id",true],["text","\/admin\/delete"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":[],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http","locale":[]}
+{
+    "base_url": "",
+    "routes": {
+        "delete_bgame": {
+            "tokens": [
+                ["variable", "\/", "[^\/]++", "id", true],
+                ["text", "\/admin\/delete"]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [],
+            "schemes": []
+        },
+
+        "delete_image_bgame": {
+            "tokens": [
+                ["variable", "\/", "[^\/]++", "id", true],
+                ["text", "\/admin\/delete\/image"]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [],
+            "schemes": []
+        }
+    },
+    "prefix": "",
+    "host": "localhost",
+    "port": "",
+    "scheme": "http",
+    "locale": []
+}

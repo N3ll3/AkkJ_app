@@ -86,7 +86,7 @@ $("#bggchoice").submit(e => {
       const description = $(xml)
         .find("description")
         .text();
-      console.log(xml, description);
+
       const duration = $(xml)
         .find("playingtime")
         .attr("value");
@@ -139,9 +139,11 @@ $("#bggchoice").submit(e => {
       );
 
       //image
-      $("#add_bgame_form_Image").val(image);
-      const imgView = `<img src=${image} alt="image boardgame" width=50 id="imageBgame">`;
-      $("#add_bgame_form .form-group:nth-child(2)").append(imgView);
+      $("#add_bgame_form_image_bgg")
+        .val(image)
+        .hide();
+      const imgView = `<figure> <figcaption> Image from BGG </figcaption><img src=${image} alt="image boardgame" width=100 id="imageBgame"></figure>`;
+      $("#add_bgame_form_name").after(imgView);
 
       //Duration
       $("#add_bgame_form_duration").val(duration);
@@ -205,4 +207,16 @@ $("#bggchoice").submit(e => {
       }
     }
   });
+});
+
+$("#deleteImage").on("click", function() {
+  let id = $(this).data("id");
+  $.post(Routing.generate("delete_image_bgame", { id: id }))
+    .done(function() {
+      $("#image").hide();
+      alert("Image is deleted");
+    })
+    .fail(function() {
+      alert("Image deletion failed");
+    });
 });

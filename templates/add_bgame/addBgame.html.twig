@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Add a Boarding Game {% endblock %}
+
+{% block title %} 
+{% if edit %}
+Modify a Boarding Game 
+{% else %}
+Add a Boarding Game
+{% endif %}
+{% endblock %}
 
 {% block body %}
 {% form_theme addForm 'bootstrap_4_layout.html.twig' %}
 {% form_theme addForm "@FOSCKEditor/Form/ckeditor_widget.html.twig" %}
 
-
+{% if edit %}
+<h1> Modifiy Game </h1>
+{% else %}
 <div class="bggForm container">
     <form action="" id="searchBGG">
         <label for="bgg"> Looking on BGG : </label>
@@ -25,19 +34,44 @@
   </p>  
 </form>
 </div>
-{% if bgameExist %}
-<div class="alert alert-dismissible alert-danger">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <p>The game <strong> {{bgameName}} </strong>  is already in your ludo</p>
- 
-</div>
-
 
 {% endif %}
 
 <div class="addForm container">
 
-{{ form(addForm, {'attr':{'id':'addForm'}}) }}
+{{ form_start(addForm, {'attr':{'id':'addForm'} }) }}
+{{ form_row(addForm.name)}}
+{{ form_row(addForm.image_bgg) }}
+{% if edit %}
+    {% if bgame.imagePerso %}
+      <img src="{{ asset('uploads/images/'~ bgame.imagePerso) }}" id="image" class="img-fluid img-thumbnail" width=100>
+      <button id="deleteImage" data-id="{{bgame.id}}" class="btn btn-danger" type="button">Delete Image</button>
+    
+    {% endif %}
+{% endif %}
+{{ form_row(addForm.image_perso, {'label':'My Image'}) }}
+{{ form_row(addForm.description)}}
+{{ form_row(addForm.duration)}}
+{{ form_row(addForm.minNbPlayers)}}
+{{ form_row(addForm.maxNbPlayers)}}
+{{ form_row(addForm.difficulty)}}
+{{ form_row(addForm.mechanism)}}
+{{ form_row(addForm.category)}}
+
+<button type="submit" class="btn btn-success">
+
+{% if edit %}
+
+Save changes
+
+{% else %}
+
+Add Game
+
+{% endif %}
+</button>
+
+{{form_end(addForm) }}
 
 </div>
 

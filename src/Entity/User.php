@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -18,7 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * fields={"username"}, message="Username already use.")
  * 
  */
-class User extends BaseUser
+class User
 {
     /**
      * @ORM\Id()
@@ -31,6 +30,5 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        
     }
 }

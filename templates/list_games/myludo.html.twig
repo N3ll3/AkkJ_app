@@ -39,7 +39,7 @@
           {{ m.name }}
         {% endfor %} </td>
         <td class='btn-group-vertical align-items-center '>
-        <button data-id={{bgame.id}} type="submit" class="btn btn-primary modify">Modify</button>
+       <a class="btn btn-primary modify" href="{{path('modify_bgame',{'id':bgame.id})}}">Modify</a> 
         <button data-id={{bgame.id}} type="submit" class="btn btn-danger delete">Delete</button>
         </td>
     </tr>

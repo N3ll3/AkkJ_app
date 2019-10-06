@@ -14,6 +14,9 @@ use App\Entity\Category;
 use App\Entity\Difficulty;
 use App\Entity\Mechanism;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Validator\Constraints\File;
 
 class AddBgameFormType extends AbstractType
 {
@@ -21,9 +24,29 @@ class AddBgameFormType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('Image')
+            ->add('image_bgg', HiddenType::class, ['required'  => false])
+            ->add(
+                'image_perso',
+                FileType::class,
+                [
+                    'required'  => false,
+                    'mapped' => false,
+                    'constraints' => [
+                        new File([
+                            'maxSize' => '1024k',
+                            'mimeTypes' => [
+                                'image/png',
+                                'image/jpeg'
+                            ],
+                            'mimeTypesMessage' => 'Please upload a valid extension image',
+                        ])
+
+                    ]
+                ]
+            )
             ->add('description', CKEditorType::class, [
-                'config_name' => 'basic_config'
+                'config_name' => 'basic_config',
+                'required'  => false
             ])
             ->add('duration',  IntegerType::class)
             ->add(
@@ -68,8 +91,7 @@ class AddBgameFormType extends AbstractType
                     'multiple' => true,
                     'expanded' => true,
                 ]
-            )
-            ->add('Add', SubmitType::class);
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

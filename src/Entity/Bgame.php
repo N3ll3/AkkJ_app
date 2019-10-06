@@ -5,9 +5,14 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BgameRepository")
+ * 
+ * @UniqueEntity(
+ * fields = {"name"}, message ="The game {{name}} is already in your ludo"
+ * )
  */
 class Bgame
 {
@@ -65,7 +70,12 @@ class Bgame
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image;
+    private $image_bgg;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image_perso;
 
     public function __construct()
     {
@@ -204,14 +214,26 @@ class Bgame
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImageBgg(): ?string
     {
-        return $this->image;
+        return $this->image_bgg;
     }
 
-    public function setImage(?string $image): self
+    public function setImageBgg(?string $image_bgg): self
     {
-        $this->image = $image;
+        $this->image_bgg = $image_bgg;
+
+        return $this;
+    }
+
+    public function getImagePerso(): ?string
+    {
+        return $this->image_perso;
+    }
+
+    public function setImagePerso(?string $image_perso): self
+    {
+        $this->image_perso = $image_perso;
 
         return $this;
     }

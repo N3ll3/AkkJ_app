@@ -68,12 +68,39 @@ class BgameRepository extends ServiceEntityRepository
     }
 
 
+    /**
+     * deleteBgame
+     *
+     * @param  mixed $bgame_id
+     *
+     * @return void
+     */
     public function deleteBgame($bgame_id)
     {
         $query = $this->createQueryBuilder('b');
         $query->delete()
             ->where('b.id = :bgame_id')
             ->setParameter('bgame_id', $bgame_id);
+
+        return $query->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * deleteImagePerso
+     *
+     * @param  mixed $bgame_id
+     *
+     * @return void
+     */
+    public function deleteImagePerso($bgame_id)
+    {
+        $query = $this->createQueryBuilder('b');
+        $query->update()
+            ->set('b.image_perso', '?1')
+            ->where('b.id = ?2')
+            ->setParameter(1, null)
+            ->setParameter(2, $bgame_id);
 
         return $query->getQuery()
             ->getResult();
