@@ -105,4 +105,15 @@ class BgameRepository extends ServiceEntityRepository
         return $query->getQuery()
             ->getResult();
     }
+
+    public function findTenBgame($firstBgame, $bgamePerPage)
+    {
+        $query = $this->createQueryBuilder('b');
+        $query->select('b', $query->expr()->substring('b.description', 0, 200))
+            ->setFirstResult($firstBgame)
+            ->setMaxResults($bgamePerPage);
+
+        return $query->getQuery()
+            ->getResult();
+    }
 }

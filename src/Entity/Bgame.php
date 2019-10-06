@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\BgameRepository")
  * 
  * @UniqueEntity(
- * fields = {"name"}, message ="The game {{name}} is already in your ludo"
+ * fields = {"name"}, message ="This game is already in your ludo"
  * )
  */
 class Bgame

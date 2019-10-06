@@ -213,7 +213,8 @@ $("#deleteImage").on("click", function() {
   let id = $(this).data("id");
   $.post(Routing.generate("delete_image_bgame", { id: id }))
     .done(function() {
-      $("#image").hide();
+      $("#image").remove();
+      $("#deleteImage").hide();
       alert("Image is deleted");
     })
     .fail(function() {
