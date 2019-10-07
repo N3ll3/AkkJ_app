@@ -7,6 +7,8 @@ use App\Entity\Filter;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 
 
 
@@ -106,14 +108,24 @@ class BgameRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findTenBgame($firstBgame, $bgamePerPage)
+    public function findTenBgame($page, $bgamePerPage)
     {
-        $query = $this->createQueryBuilder('b');
-        $query->select('b', $query->expr()->substring('b.description', 0, 200))
-            ->setFirstResult($firstBgame)
-            ->setMaxResults($bgamePerPage);
 
-        return $query->getQuery()
-            ->getResult();
+        $qb = $this->createQueryBuilder('b');
+        // $qb->addselect($qb->expr()->substring('b.description', 0, 200))
+        $qb->orderBy('b.name', 'ASC');
+
+        $query = $qb->getQuery();
+
+        $firstResult = ($page - 1) * $bgamePerPage;
+        $query->setFirstResult($firstResult)->setMaxResults($bgamePerPage);
+        $paginator = new Paginator($query);
+      
+
+        if (($paginator->count() <= $firstResult) && $page != 1) {
+            throw new NotFoundHttpException('Page does not exist'); // page 404, sauf pour la première page
+        }
+
+        return $paginator;
     }
 }

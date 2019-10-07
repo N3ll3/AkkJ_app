@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use InvalidArgumentException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BgameController extends AbstractController
 {
@@ -65,29 +67,36 @@ class BgameController extends AbstractController
 
     /**
      * @Route("/admin/list-bgames/{page}", name="list_bgames")
+     * 
      */
 
-    public function listBgames(BgameRepository $bgamesRepo,  Request $request, $page)
+    public function listBgames(BgameRepository $bgamesRepo, $page)
     {
-        $bgamePerPage = 10;
 
-        $allBgames = $bgamesRepo->findAll();
-        $nbOfBgame =  count($allBgames);
-        $numberOfPage = ceil(intval($nbOfBgame) / $bgamePerPage);
-        $page = 1;
-
-        if ($page) {
-            $page = 1;
+        if (!is_numeric($page)) {
+            throw new InvalidArgumentException(
+                'Parameter $page is incorrect (value : ' . $page . ').'
+            );
         }
 
-        $firstBgame = ($page - 1) * $bgamePerPage;
+        if ($page < 1) {
+            throw new NotFoundHttpException('Page does not exist');
+        }
 
-        //show five posts
-        $bgames = $bgamesRepo->findTenBgame($firstBgame, $bgamePerPage);
+        $bgamePerPage = 10;
+
+        $bgames = $bgamesRepo->findTenBgame($page, $bgamePerPage);
+
+        $pagination = [
+            'page' => $page,
+            'nbPages' => ceil(count($bgames) / $bgamePerPage),
+            'route' => 'list_bgames',
+            'paramsRoute' => []
+        ];
 
         return $this->render('list_games/myludo.html.twig', [
             'bgames' => $bgames,
-            'nbPage' => $numberOfPage
+            'pagination' => $pagination
         ]);
     }
 
