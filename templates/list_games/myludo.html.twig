@@ -5,9 +5,6 @@
 {% block body %}
 
 
-
-
-
 {% if pagination.nbPages > 0 %}
     <ul class="pagination justify-content-center m-3">
 
@@ -41,41 +38,49 @@
 {% endif %}
 
 <div class="listGames">  
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-     
-    <th scope="col">Playing Time</th>
-      <th scope="col">Min Players</th>
-      <th scope="col">Max Players</th>
-       <th scope="col">Difficulty</th>
-      <th scope="col">Categories</th>
-       <th scope="col">Mecanics</th>
-    </tr>
-  </thead> 
-  </thead>
+  <table class="table table-hover">
+    <thead>
+      <tr> 
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Description</th>     
+        <th scope="col">Playing Time</th>
+        <th scope="col">Min Players</th>
+        <th scope="col">Max Players</th>
+        <th scope="col">Difficulty</th>
+        <th scope="col">Categories</th>
+        <th scope="col">Mecanics</th>
+      </tr>
+    </thead> 
+ 
   <tbody>
   {% for bgame in bgames %}
     <tr class="table-secondary">
       <th scope="row"> <a href="{{ path('show_one_bgame', {'id': bgame.id}) }}"> {{bgame.name}}</a> </th>
-      <td> {{bgame.description | raw}} ... </td>     
+      <td> 
+       {% if bgame.imagePerso %}
+      <img src="{{asset('uploads/images/'~ bgame.imagePerso)}}" id="image" class="img-fluid img-thumbnail" width=100>
+      {% else %}
+      <img src="{{bgame.imageBgg}}" id="image" class="img-fluid img-thumbnail" width=100>
+      {% endif %}
+      </td>
+      <td> {{bgame.description |truncate(250, true) | raw}} </td>     
       <td> {{ bgame.duration }} minutes </td>
       <td> {{ bgame.minNbPlayers }} </td>
       <td> {{ bgame.maxNbPlayers }} </td>
       <td> {{ bgame.difficulty.name }} </td>
       <td> {% for c in bgame.category %}
-      {{ c.name }}
+          <li>{{ c.name }}</li>
         {% endfor %}
       </td>
       <td> {% for m in bgame.mechanism %}
-          {{ m.name }}
-        {% endfor %} </td>
-        <td class='btn-group-vertical align-items-center '>
+            <li> {{ m.name }}</li>
+        {% endfor %} 
+      </td>
+      <td class='btn-group-vertical align-items-center '>
        <a class="btn btn-primary modify" href="{{path('modify_bgame',{'id':bgame.id})}}">Modify</a> 
         <button data-id={{bgame.id}} type="submit" class="btn btn-danger delete">Delete</button>
-        </td>
+      </td>
     </tr>
    {% endfor %}
   </tbody>

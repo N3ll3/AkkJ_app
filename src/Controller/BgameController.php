@@ -83,9 +83,9 @@ class BgameController extends AbstractController
             throw new NotFoundHttpException('Page does not exist');
         }
 
-        $bgamePerPage = 10;
+        $bgamePerPage = 7;
 
-        $bgames = $bgamesRepo->findTenBgame($page, $bgamePerPage);
+        $bgames = $bgamesRepo->findBgame($page, $bgamePerPage);
 
         $pagination = [
             'page' => $page,
@@ -136,5 +136,12 @@ class BgameController extends AbstractController
         } else {
             return new JsonResponse(['msg' => 'Fail', "response" => $deletedImage]);
         }
+    }
+
+
+
+    public function searchByName(BgameRepository $bgamesRepo, Request $request) {
+        $bgame = $bgamesRepo->getByName($request->get('search')); 
+        
     }
 }

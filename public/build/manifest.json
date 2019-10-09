@@ -2651,7 +2651,5 @@
   "build/ckeditor/skins/moono/images/spinner.gif": "/build/ckeditor/skins/moono/images/spinner.gif",
   "build/ckeditor/skins/moono/readme.md": "/build/ckeditor/skins/moono/readme.md",
   "build/ckeditor/skins/moono/skin.js": "/build/ckeditor/skins/moono/skin.js",
-  "build/ckeditor/styles.js": "/build/ckeditor/styles.js",
-  "build/vendors~myludo.js": "/build/vendors~myludo.js",
-  "build/app~myludo.js": "/build/app~myludo.js"
+  "build/ckeditor/styles.js": "/build/ckeditor/styles.js"
 }

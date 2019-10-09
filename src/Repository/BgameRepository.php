@@ -57,6 +57,8 @@ class BgameRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere(':id_mechanism MEMBER OF b.mechanism')
                 ->setParameter('id_mechanism', $filter->getMechanism());
+            dump($query);
+            exit;
         }
 
         if ($filter->getCategory()) {
@@ -64,6 +66,8 @@ class BgameRepository extends ServiceEntityRepository
                 ->andWhere(':id_category MEMBER OF b.category')
                 ->setParameter('id_category', $filter->getCategory());
         }
+
+        $query = $query->orderBy('b.name', "ASC");
 
         return $query->getQuery()
             ->getResult();
@@ -108,7 +112,7 @@ class BgameRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findTenBgame($page, $bgamePerPage)
+    public function findBgame($page, $bgamePerPage)
     {
 
         $qb = $this->createQueryBuilder('b');
@@ -120,7 +124,7 @@ class BgameRepository extends ServiceEntityRepository
         $firstResult = ($page - 1) * $bgamePerPage;
         $query->setFirstResult($firstResult)->setMaxResults($bgamePerPage);
         $paginator = new Paginator($query);
-      
+
 
         if (($paginator->count() <= $firstResult) && $page != 1) {
             throw new NotFoundHttpException('Page does not exist'); // page 404, sauf pour la première page

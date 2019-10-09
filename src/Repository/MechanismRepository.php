@@ -48,6 +48,12 @@ class MechanismRepository extends ServiceEntityRepository
     }
     */
 
+    public function getMechanismsSelectedQB()
+    {
+        $query = $this->createQueryBuilder('m');
+        $query->select('DISTINCT m.name')
+            ->innerJoin('m.bgames', 'b');
 
-    
+        return $query;
+    }
 }
