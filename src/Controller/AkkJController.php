@@ -48,5 +48,7 @@ class AkkJController extends AbstractController
      * @return void
      */
     public function searchOneGame(BgameRepository $bgameRepo, Request $request)
-    { }
+    {
+        $bgame = $bgameRepo->getByName($request->get('search'));
+     }
 }

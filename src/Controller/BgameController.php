@@ -85,7 +85,7 @@ class BgameController extends AbstractController
 
         $bgamePerPage = 7;
 
-        $bgames = $bgamesRepo->findBgame($page, $bgamePerPage);
+        $bgames = $bgamesRepo->findBgames($page, $bgamePerPage);
 
         $pagination = [
             'page' => $page,
@@ -138,10 +138,4 @@ class BgameController extends AbstractController
         }
     }
 
-
-
-    public function searchByName(BgameRepository $bgamesRepo, Request $request) {
-        $bgame = $bgamesRepo->getByName($request->get('search')); 
-        
-    }
 }

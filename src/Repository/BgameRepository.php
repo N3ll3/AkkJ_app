@@ -112,7 +112,7 @@ class BgameRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findBgame($page, $bgamePerPage)
+    public function findBgames($page, $bgamePerPage)
     {
 
         $qb = $this->createQueryBuilder('b');
