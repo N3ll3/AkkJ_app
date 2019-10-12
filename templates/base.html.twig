@@ -30,13 +30,17 @@
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
             <a class="navbar-brand" href="/"><i class="fas fa-home"></i> AkkJ</a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
                 aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarColor01">
+
+                {% if is_granted('ROLE_ADMIN') %}
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('list_bgames',{'page':1})}}">My Ludo </a>
@@ -54,20 +58,48 @@
                         <a class="nav-link" href="#">My account</a>
                     </li>
                 </ul>
+                {% endif %}
+
                 <form method="POST" action="{{path('simple_search')}}" class="form-inline">
                     <label for="search"></label>
-                    <input type="text" id="search" placeholder="Looking for a game">
+                    <input name="search" type="text" id="search" placeholder="Looking for a game">
                     <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i> </button>
                 </form>
 
             </div>
         </nav>
 
+        {% block flash %}
+            {% for flash_message in app.session.flashbag.get('success') %}
+                <div class="container alert alert-success" role="alert">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+            {% for flash_message in app.session.flashbag.get('info') %}
+                <div class="container alert alert-info" role="alert">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+            {% for flash_message in app.session.flashbag.get('warning') %}
+                <div class="container alert alert-warning" role="alert">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+            {% for flash_message in app.session.flashbag.get('danger') %}
+                <div class="container alert alert-danger" role="alert">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+        {% endblock %}
+
     </header>
+    
     {% block body %}{% endblock %}
    
     {% block script %}
     {% endblock %}
+
+
 <footer> CopyRight - Site de Emmanuelle CHARTIER </footer>
 </body>
 

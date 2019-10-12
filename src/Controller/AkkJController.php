@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\FilterType;
 use App\Repository\BgameRepository;
 use App\Entity\Filter;
+use App\Entity\Bgame;
 
 
 class AkkJController extends AbstractController
@@ -39,16 +40,32 @@ class AkkJController extends AbstractController
         }
     }
 
+    /**
+     * @Route("/show/{id}", name="show_one_bgame")
+     */
+    public function showOneBgame(Bgame $bgame)
+    {
+        return $this->render('show_one_bgame/showOneBgame.html.twig', [
+            'bgame' => $bgame
+        ]);
+    }
 
     /**
      * @Route("/simpleSearch", name="simple_search")
      *
-     * @param BgameRepository $bgameRepo
-     * @param Request $request
-     * @return void
+     * 
      */
     public function searchOneGame(BgameRepository $bgameRepo, Request $request)
     {
-        $bgame = $bgameRepo->getByName($request->get('search'));
-     }
+        $search = "%" . $request->request->get('search') . "%";;
+      
+        $bgame = $bgameRepo->findByName($search2);
+
+        dump($bgame);
+        exit;
+
+        return $this->render('show_one_bgame/showOneBgame.html.twig', [
+            'bgame' => $bgame[0]
+        ]);
+    }
 }

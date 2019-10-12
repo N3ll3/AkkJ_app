@@ -15,12 +15,14 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use InvalidArgumentException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class BgameController extends AbstractController
 {
     /**
      * @Route("/admin/addBgame", name="add_bgame")
      * @Route("/admin/modifyBgame/{id}", name="modify_bgame")
+     * 
      * 
      */
     public function addBgameForm(Bgame $bgame = null, Request $request, ObjectManager $manager, BgameRepository $repo)
@@ -70,7 +72,7 @@ class BgameController extends AbstractController
      * 
      */
 
-    public function listBgames(BgameRepository $bgamesRepo, $page)
+    public function listBgames(BgameRepository $bgamesRepo, $page = 1)
     {
 
         if (!is_numeric($page)) {
@@ -100,15 +102,9 @@ class BgameController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/show/{id}", name="show_one_bgame")
-     */
-    public function showOneBgame(Bgame $bgame)
-    {
-        return $this->render('show_one_bgame/showOneBgame.html.twig', [
-            'bgame' => $bgame
-        ]);
-    }
+
+
+
     /**
      * @Route("/admin/delete/{id}", options={"expose"= true}, name="delete_bgame")
      */
@@ -137,5 +133,4 @@ class BgameController extends AbstractController
             return new JsonResponse(['msg' => 'Fail', "response" => $deletedImage]);
         }
     }
-
 }
