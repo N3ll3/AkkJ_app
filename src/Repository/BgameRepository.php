@@ -57,8 +57,6 @@ class BgameRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere(':id_mechanism MEMBER OF b.mechanism')
                 ->setParameter('id_mechanism', $filter->getMechanism());
-            dump($query);
-            exit;
         }
 
         if ($filter->getCategory()) {
@@ -116,7 +114,6 @@ class BgameRepository extends ServiceEntityRepository
     {
 
         $qb = $this->createQueryBuilder('b');
-        // $qb->addselect($qb->expr()->substring('b.description', 0, 200))
         $qb->orderBy('b.name', 'ASC');
 
         $query = $qb->getQuery();
@@ -131,5 +128,16 @@ class BgameRepository extends ServiceEntityRepository
         }
 
         return $paginator;
+    }
+
+
+    public function findBgameBySearchName($search)
+    {
+        $query = $this->createQueryBuilder('b');
+        $query->andWhere('b.name LIKE :name')
+            ->setParameter('name', "%" . $search . "%");
+
+        return  $query->getQuery()
+            ->getResult();
     }
 }

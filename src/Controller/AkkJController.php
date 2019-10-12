@@ -29,13 +29,15 @@ class AkkJController extends AbstractController
         if (!$bgamesFind) {
             return $this->render('akkj/akkj.html.twig', [
                 'filterForm' => $filterForm->createView(),
-                'bgamesFind' => false
+                'bgamesFind' => false,
+                'search' => false
             ]);
         } else {
             return $this->render('akkj/akkj.html.twig', [
                 'filterForm' => $filterForm->createView(),
                 'bgames' => $bgamesFind,
-                'bgamesFind' => true
+                'bgamesFind' => true,
+                'search' => false
             ]);
         }
     }
@@ -57,15 +59,22 @@ class AkkJController extends AbstractController
      */
     public function searchOneGame(BgameRepository $bgameRepo, Request $request)
     {
-        $search = "%" . $request->request->get('search') . "%";;
-      
-        $bgame = $bgameRepo->findByName($search2);
+        $search = $request->request->get('search');
 
-        dump($bgame);
-        exit;
+        $bgames = $bgameRepo->findBgameBySearchName($search);
 
-        return $this->render('show_one_bgame/showOneBgame.html.twig', [
-            'bgame' => $bgame[0]
-        ]);
+        if (!$bgames) {
+            return $this->render('akkj/akkj.html.twig', [
+                'bgamesFind' => false,
+                'search' => true
+            ]);
+        } else {
+            return $this->render('akkj/akkj.html.twig', [
+                'bgames' => $bgames,
+                'bgamesFind' => true,
+                'search' => true
+
+            ]);
+        }
     }
 }

@@ -98,7 +98,7 @@ class BgameController extends AbstractController
 
         return $this->render('list_games/myludo.html.twig', [
             'bgames' => $bgames,
-            'pagination' => $pagination
+            'pagination' => $pagination,
         ]);
     }
 
