@@ -140,4 +140,24 @@ class BgameRepository extends ServiceEntityRepository
         return  $query->getQuery()
             ->getResult();
     }
+
+
+    public function countAllBgames()
+    {
+        $query = $this->createQueryBuilder('b');
+        $query->select('count(b.id) as nb');
+
+        return  $query->getQuery()
+            ->getSingleScalarResult();;
+    }
+
+    public function getLastBgame()
+    {
+        $query = $this->createQueryBuilder('b');
+        $query->orderBy('b.id', 'DESC')
+            ->setMaxResults(1);
+
+        return $query->getQuery()
+            ->getSingleResult();
+    }
 }

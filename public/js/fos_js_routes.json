@@ -23,6 +23,18 @@
             "hosttokens": [],
             "methods": [],
             "schemes": []
+        },
+
+        "delete_user": {
+            "tokens": [
+                ["variable", "\/", "[^\/]++", "id", true],
+                ["text", "\/admin\/delete\/user"]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [],
+            "schemes": []
         }
     },
     "prefix": "",

@@ -6,34 +6,39 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\UserType;
 use App\Entity\User;
-use App\Form\LoginType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+
+/**
+ * @isGranted("ROLE_ADMIN")
+ */
 class RegisterController extends AbstractController
 {
     /**
      * @Route("/admin/register", name="registration")
+     * @Route("/admin/modify/user/{id}", name="modify_user")
+     * 
      */
-    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder,  ObjectManager $manager)
+    public function registerAction(User $user = null, Request $request, UserPasswordEncoderInterface $passwordEncoder,  ObjectManager $manager)
     {
 
-        $user = new User();
+        if (!$user) {
+            $user = new User();
+        }
+
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
 
             $role = $user->getRoles();
-            dump($role);
 
             if ($role[0] == 'ROLE_ADMIN') {
                 $user->setRoles(["ROLE_ADMIN", "ROLE_USER"]);
@@ -53,7 +58,8 @@ class RegisterController extends AbstractController
             'security/registration.html.twig',
             [
                 'form' => $form->createView(),
-                'admin' => true
+                "edit" => $user->getId() !== null,
+                'user' => $user
             ]
         );
     }

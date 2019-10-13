@@ -29,6 +29,8 @@
 <body>
 
     <header>
+    {% if is_granted('ROLE_USER') %}
+        
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
             <a class="navbar-brand" href="/"><i class="fas fa-home"></i> AkkJ</a>
@@ -42,6 +44,11 @@
 
                 {% if is_granted('ROLE_ADMIN') %}
                 <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('my_account')}}">My account</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('list_bgames',{'page':1})}}">My Ludo </a>
                     </li>
@@ -53,13 +60,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('registration')}}">Add a new member </a>
                     </li>
-            
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">My account</a>
-                    </li>
+                            
                 </ul>
                 {% endif %}
 
+                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('logout')}}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                    </li>
+                </ul>
+                  
                 <form method="POST" action="{{path('simple_search')}}" class="form-inline">
                     <label for="search"></label>
                     <input name="search" type="text" id="search" placeholder="Looking for a game">
@@ -92,8 +102,9 @@
             {% endfor %}
         {% endblock %}
 
+   {% endif %}
     </header>
-    
+       
     {% block body %}{% endblock %}
    
     {% block script %}

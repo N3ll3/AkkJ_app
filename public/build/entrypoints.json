@@ -3,7 +3,7 @@
     "app": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors~app~myludo.js",
+        "/build/vendors~app~myAccount~myludo.js",
         "/build/app.js"
       ],
       "css": [
@@ -13,8 +13,15 @@
     "myludo": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors~app~myludo.js",
+        "/build/vendors~app~myAccount~myludo.js",
         "/build/myludo.js"
+      ]
+    },
+    "myAccount": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors~app~myAccount~myludo.js",
+        "/build/myAccount.js"
       ]
     }
   }

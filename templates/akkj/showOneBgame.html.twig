@@ -5,11 +5,13 @@
 {% block body %}
 
 <div class="container">
-
+  {% if is_granted('ROLE_ADMIN') %}
 <div class='text-center m-2' id='admin'>
  <a class="btn btn-primary modify" href="{{path('modify_bgame',{'id':bgame.id})}}">Modify</a> 
 
 </div>
+
+{% endif %}
 
 <section class="row align-items-center">
   <div id="image" class="col-sm-5">   
@@ -38,7 +40,7 @@
   </p>
 
   <p>
-    <h3>Mecanics</h3>
+    <h3>Mechanics</h3>
       <ul class="list-group list-group-horizontal">
         {% for m in bgame.mechanism %}
         <li class="list-group-item list-group-item-action"> {{m.name}}</li>

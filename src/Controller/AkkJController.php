@@ -9,12 +9,16 @@ use App\Form\FilterType;
 use App\Repository\BgameRepository;
 use App\Entity\Filter;
 use App\Entity\Bgame;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-
+/**
+ * @isGranted("ROLE_USER")
+ */
 class AkkJController extends AbstractController
 {
     /**
      * @Route("/", name="akkj")
+     * 
      */
     public function akkj(BgameRepository $bgameRepo, Request $request)
     {
@@ -47,7 +51,7 @@ class AkkJController extends AbstractController
      */
     public function showOneBgame(Bgame $bgame)
     {
-        return $this->render('show_one_bgame/showOneBgame.html.twig', [
+        return $this->render('akkj/showOneBgame.html.twig', [
             'bgame' => $bgame
         ]);
     }

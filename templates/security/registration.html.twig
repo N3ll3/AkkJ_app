@@ -1,10 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Member Registration{% endblock %}
+{% block title %}
+{% if edit %}
+Modify User
+{% else %}
+New User
+{% endif %}
+{% endblock %}
 
 {% block body %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-{{form(form)}}
+{% if edit %}
+<h1> Modifiy User </h1>
+{% endif %}
 
+{{form_start(form)}}
+{{form_row(form.email)}}
+
+{% if edit %}  
+{% do form.username.setRendered() %}
+{% else %}
+   {{form_row(form.username) }} 
+{% endif %} 
+
+{% if edit %}  
+{% do form.password.setRendered() %}
+{% else %}
+    {{ form_row (form.password) }}
+{% endif %}
+
+{{ form_row(form.roles)}}
+
+<button type="submit" class="btn btn-success">
+
+{% if edit %}
+
+Save changes
+
+{% else %}
+
+Add user
+
+{% endif %}
+</button>
+
+{{form_end(form) }}
 
 {% endblock %}

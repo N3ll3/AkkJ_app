@@ -1,10 +1,11 @@
 {
   "build/app.css": "/build/app.css",
   "build/app.js": "/build/app.js",
+  "build/myAccount.js": "/build/myAccount.js",
   "build/myludo.js": "/build/myludo.js",
   "build/runtime.js": "/build/runtime.js",
   "build/vendors~_tmp_copy.js": "/build/vendors~_tmp_copy.js",
-  "build/vendors~app~myludo.js": "/build/vendors~app~myludo.js",
+  "build/vendors~app~myAccount~myludo.js": "/build/vendors~app~myAccount~myludo.js",
   "build/ckeditor/adapters/jquery.js": "/build/ckeditor/adapters/jquery.js",
   "build/ckeditor/ckeditor.js": "/build/ckeditor/ckeditor.js",
   "build/ckeditor/config.js": "/build/ckeditor/config.js",
@@ -2651,5 +2652,6 @@
   "build/ckeditor/skins/moono/images/spinner.gif": "/build/ckeditor/skins/moono/images/spinner.gif",
   "build/ckeditor/skins/moono/readme.md": "/build/ckeditor/skins/moono/readme.md",
   "build/ckeditor/skins/moono/skin.js": "/build/ckeditor/skins/moono/skin.js",
-  "build/ckeditor/styles.js": "/build/ckeditor/styles.js"
+  "build/ckeditor/styles.js": "/build/ckeditor/styles.js",
+  "build/app~myAccount~myludo.js": "/build/app~myAccount~myludo.js"
 }

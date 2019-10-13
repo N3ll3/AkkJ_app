@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Account{% endblock %}
+
+
+{% block body %}
+<section> 
+<h1>You have {{nbOfBgames}} games in <a href="{{ path('list_bgames',{'page':1})}}"> My Ludo.<a></h1> 
+<p><button class="btn btn-primary"><a href="{{ path('add_bgame')}}">Add a boarding game</a></button></p>
+
+    <h3>Last game added : </h3>
+ <table class="table table-hover">
+    <thead>
+      <tr> 
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead> 
+ 
+  <tbody>
+  
+    <tr class="table-secondary">
+      <th scope="row"><a href="{{ path('show_one_bgame', {'id': bgame.id}) }}"> {{bgame.name}}</a> </th>
+      <td> 
+       {% if bgame.imagePerso %}
+      <img src="{{asset('uploads/images/'~ bgame.imagePerso)}}" id="image" class="img-fluid img-thumbnail" width=100>
+      {% else %}
+      <img src="{{bgame.imageBgg}}" id="image" class="img-fluid img-thumbnail" width=100>
+      {% endif %}
+      </td>     
+    </tr>
+ 
+  </tbody>
+</table> 
+</section>
+
+<section>
+<h1>There are {{nbOfUsers}} members registered.</h1>
+<p><button class="btn btn-primary"><a href="{{ path('registration')}}">Add a new member </a></button></p>
+
+{% if users %}
+<div class="listUsers">
+
+  <table class="table table-hover">
+    <thead>
+      <tr> 
+        <th scope="col">Email</th>
+        <th scope="col">Roles</th>
+      </tr>
+    </thead> 
+{% for user in users %}
+    <tbody>
+        <tr>
+            <td> {{user.email}} </td>
+            <td> {{user.roles[0]}} </td>     
+            <td class='btn-group align-items-center '>
+            <a class="btn btn-primary modify" href="{{path('modify_user',{'id':user.id})}}">Modify</a> 
+            <button data-id={{user.id}} type="submit" class="btn btn-danger deleteUser">Delete</button>
+           </td>
+        </tr>
+
+{% endfor %}
+    </tbody>
+</table>
+</div>
+</section>
+{% endif %}
+
+
+
+   {% block script %}
+      {{ encore_entry_script_tags('myAccount') }}
+    {% endblock %}
+  
+{% endblock %}
+

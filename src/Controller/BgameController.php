@@ -17,15 +17,19 @@ use InvalidArgumentException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * @isGranted("ROLE_ADMIN")
+ */
+
 class BgameController extends AbstractController
 {
     /**
      * @Route("/admin/addBgame", name="add_bgame")
      * @Route("/admin/modifyBgame/{id}", name="modify_bgame")
      * 
-     * 
+     
      */
-    public function addBgameForm(Bgame $bgame = null, Request $request, ObjectManager $manager, BgameRepository $repo)
+    public function addBgameForm(Bgame $bgame = null, Request $request, ObjectManager $manager)
     {
         if (!$bgame) {
             $bgame = new Bgame();
@@ -59,7 +63,7 @@ class BgameController extends AbstractController
             return $this->redirectToRoute('list_bgames');
         }
 
-        return $this->render('add_bgame/addBgame.html.twig', [
+        return $this->render('admin/addBgame.html.twig', [
             'addForm' => $addForm->createView(),
             'bgameExist' => false,
             'edit' => $bgame->getId() !== null,
@@ -96,7 +100,7 @@ class BgameController extends AbstractController
             'paramsRoute' => []
         ];
 
-        return $this->render('list_games/myludo.html.twig', [
+        return $this->render('admin/myludo.html.twig', [
             'bgames' => $bgames,
             'pagination' => $pagination,
         ]);
@@ -106,7 +110,7 @@ class BgameController extends AbstractController
 
 
     /**
-     * @Route("/admin/delete/{id}", options={"expose"= true}, name="delete_bgame")
+     * @Route("/admin/delete/bgame/{id}", options={"expose"= true}, name="delete_bgame")
      */
 
     public function deleteBgame(BgameRepository $bgamesRepo, Request $request)
