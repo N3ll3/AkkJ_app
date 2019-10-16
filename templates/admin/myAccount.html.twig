@@ -4,13 +4,16 @@
 
 
 {% block body %}
-<section> 
-<h1>You have {{nbOfBgames}} games in <a href="{{ path('list_bgames',{'page':1})}}"> My Ludo.<a></h1> 
-<p><button class="btn btn-primary"><a href="{{ path('add_bgame')}}">Add a boarding game</a></button></p>
 
-    <h3>Last game added : </h3>
- <table class="table table-hover">
+
+<section class='admin'> 
+<div class="card border-secondary mb-3 ">
+  <div class="card-header"><h1>You have <span class='text-primary'>{{nbOfBgames}}</span> games in <a href="{{ path('list_bgames',{'page':1})}}"> My Ludo.<a></h1> </div>
+  <div class="card-body">  
+    <h4 class="card-title"> <a href="{{ path('add_bgame')}}"><button class="btn btn-primary " > Add a boarding game </button> </a></h4>
+    <table class="table table-hover card-text">
     <thead>
+    <tr colspan=2>Last game added :</tr>
       <tr> 
         <th scope="col">Name</th>
         <th scope="col">Image</th>
@@ -18,7 +21,6 @@
     </thead> 
  
   <tbody>
-  
     <tr class="table-secondary">
       <th scope="row"><a href="{{ path('show_one_bgame', {'id': bgame.id}) }}"> {{bgame.name}}</a> </th>
       <td> 
@@ -32,39 +34,46 @@
  
   </tbody>
 </table> 
-</section>
-
-<section>
-<h1>There are {{nbOfUsers}} members registered.</h1>
-<p><button class="btn btn-primary"><a href="{{ path('registration')}}">Add a new member </a></button></p>
-
-{% if users %}
-<div class="listUsers">
-
-  <table class="table table-hover">
-    <thead>
-      <tr> 
-        <th scope="col">Email</th>
-        <th scope="col">Roles</th>
-      </tr>
-    </thead> 
-{% for user in users %}
-    <tbody>
-        <tr>
-            <td> {{user.email}} </td>
-            <td> {{user.roles[0]}} </td>     
-            <td class='btn-group align-items-center '>
-            <a class="btn btn-primary modify" href="{{path('modify_user',{'id':user.id})}}">Modify</a> 
-            <button data-id={{user.id}} type="submit" class="btn btn-danger deleteUser">Delete</button>
-           </td>
-        </tr>
-
-{% endfor %}
-    </tbody>
-</table>
+  </div>
 </div>
+
 </section>
-{% endif %}
+
+<section class='admin'>
+
+<div class="card border-primary mb-3">
+  <div class="card-header"><h1>There are <span class='text-primary'>{{nbOfUsers}}</span> members registered.</h1></div>
+  <div class="card-body">
+    <h4 class="card-title"><a href="{{ path('registration')}}"><button class="btn btn-primary">Add a new member</button> </a></h4>
+          
+      {% if users %}
+
+        <table class="table table-hover card-text">
+          <thead>
+            <tr> 
+              <th scope="col">Email</th>
+              <th scope="col">Roles</th>
+            </tr>
+          </thead> 
+      {% for user in users %}
+          <tbody>
+              <tr>
+                  <td> {{user.email}} </td>
+                  <td> {{user.roles[0]}} </td>     
+                  <td class='btn-group align-items-center '>
+                  <a class="btn btn-primary modify" href="{{path('modify_user',{'id':user.id})}}">Modify</a> 
+                  <button data-id={{user.id}} type="submit" class="btn btn-danger deleteUser">Delete</button>
+                 </td>
+              </tr>
+
+      {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+  </div>
+
+</section>
+
 
 
 

@@ -2653,5 +2653,5 @@
   "build/ckeditor/skins/moono/readme.md": "/build/ckeditor/skins/moono/readme.md",
   "build/ckeditor/skins/moono/skin.js": "/build/ckeditor/skins/moono/skin.js",
   "build/ckeditor/styles.js": "/build/ckeditor/styles.js",
-  "build/app~myAccount~myludo.js": "/build/app~myAccount~myludo.js"
+  "build/vendors~myAccount~myludo.js": "/build/vendors~myAccount~myludo.js"
 }

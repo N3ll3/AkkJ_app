@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 
-
 {% block title %} 
 {% if edit %}
 Modify a Boarding Game 
@@ -17,21 +16,22 @@ Add a Boarding Game
 {% if edit %}
 <h1> Modifiy Game </h1>
 {% else %}
+
 <div class="bggForm container">
-    <form action="" id="searchBGG">
+    <form action="" id="searchBGG" class="bgg">
         <label for="bgg"> Looking on BGG : </label>
         <input name="search" type="text" id="bgameBGG">
         <button  class="btn btn-primary" type="submit"> Search </button>
     </form>
 
-<form action="" id="bggchoice" method="post">
-  <p>
-    <label for="bggame">Boarding Games Find :</label></br>
-        <select name="bggame" id="bggame">
-        </select>
-      <input type="hidden" name="_method" value="PUT"/>
-     <button type="submit" class="btn btn-primary" id="fillForm"> Fill the form </button>   
-  </p>  
+    <form action="" id="bggchoice" class="bgg" method="post">
+    <p>
+      <label for="bggame">Boarding Games Find :</label></br>
+          <select name="bggame" id="bggame">
+          </select>
+        <input type="hidden" name="_method" value="PUT"/>
+      <button type="submit" class="btn btn-primary" id="fillForm"> Fill the form </button>   
+    </p>  
 </form>
 </div>
 
@@ -40,6 +40,21 @@ Add a Boarding Game
 <div class="addForm container">
 
 {{ form_start(addForm, {'attr':{'id':'addForm'} }) }}
+<div class='text-center'>
+  <button type="submit" class="btn btn-success" id="addgame">
+
+{% if edit %}
+
+Save changes
+
+{% else %}
+
+Add Game
+
+{% endif %}
+  </button>
+</div>
+
 {{ form_row(addForm.name)}}
 {{ form_row(addForm.image_bgg) }}
 {% if edit %}
@@ -58,18 +73,7 @@ Add a Boarding Game
 {{ form_row(addForm.mechanism)}}
 {{ form_row(addForm.category)}}
 
-<button type="submit" class="btn btn-success">
 
-{% if edit %}
-
-Save changes
-
-{% else %}
-
-Add Game
-
-{% endif %}
-</button>
 
 {{form_end(addForm) }}
 

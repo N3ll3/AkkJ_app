@@ -9,10 +9,12 @@ New User
 {% endblock %}
 
 {% block body %}
+
+<div class="memberForm container">
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {% if edit %}
-<h1> Modifiy User </h1>
+<h1> Modify User </h1>
 {% endif %}
 
 {{form_start(form)}}
@@ -32,7 +34,7 @@ New User
 
 {{ form_row(form.roles)}}
 
-<button type="submit" class="btn btn-success">
+<button type="submit" class="btn btn-success" id='addMember'>
 
 {% if edit %}
 
@@ -46,5 +48,5 @@ Add user
 </button>
 
 {{form_end(form) }}
-
+</div>
 {% endblock %}

@@ -172,36 +172,42 @@ $("#bggchoice").submit(e => {
       }
 
       // Mechanism
-      const MechanismLabelsName = new Object();
+      const MechanismOptionName = new Object();
 
-      $("#add_bgame_form_mechanism .form-check-label").each(function() {
-        const labelName = $(this).text();
-        const labelFor = $(this)[0].htmlFor;
-        MechanismLabelsName[labelName] = labelFor;
+      $("#add_bgame_form_mechanism option").each(function() {
+        const optionName = $(this).text();
+        const id = $(this).val();
+        MechanismOptionName[optionName] = id;
       });
 
-      for (let label in MechanismLabelsName) {
+      for (let option in MechanismOptionName) {
         mechanisms.forEach(mechanism => {
-          if (mechanism == label) {
-            let id = MechanismLabelsName[label];
-            $(`#${id}`).prop("checked", true);
+          if (mechanism == option) {
+            let id = MechanismOptionName[option];
+            $(`#add_bgame_form_mechanism option[value=${id}]`).attr(
+              "selected",
+              true
+            );
           }
         });
       }
 
       // Category
-      const CategoryLabelsName = new Object();
-      $("#add_bgame_form_category .form-check-label").each(function() {
-        const labelName = $(this).text();
-        const labelFor = $(this)[0].htmlFor;
-        CategoryLabelsName[labelName] = labelFor;
+      const CategoryOptionName = new Object();
+      $("#add_bgame_form_category option").each(function() {
+        const optionName = $(this).text();
+        const id = $(this).val();
+        CategoryOptionName[optionName] = id;
       });
 
-      for (let label in CategoryLabelsName) {
+      for (let option in CategoryOptionName) {
         categories.forEach(category => {
-          if (category == label) {
-            let id = CategoryLabelsName[label];
-            $(`#${id}`).prop("checked", true);
+          if (category == option) {
+            let id = CategoryOptionName[option];
+            $(`#add_bgame_form_category option[value=${id}]`).attr(
+              "selected",
+              true
+            );
           }
         });
       }
