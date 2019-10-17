@@ -6,59 +6,57 @@
 
 <div class="container">
   {% if is_granted('ROLE_ADMIN') %}
-<div class='text-center m-2' id='admin'>
- <a class="btn btn-primary modify" href="{{path('modify_bgame',{'id':bgame.id})}}">Modify</a> 
-</div>
+  <div class='text-center p-2' id='admin'>
+  <a class="btn btn-primary modify" href="{{path('modify_bgame',{'id':bgame.id})}}">Modify</a> 
+  </div>
 
 {% endif %}
 
-<section class="row align-items-center">
-  <div id="image" class="col-sm-5">   
-  {% if bgame.imagePerso %}
-    <img src="{{ asset('uploads/images/'~ bgame.imagePerso) }}" id="image" class="img-fluid img-thumbnail">
-  {% else %}
-  <img src="{{bgame.imageBgg}}" id="image" class="img-fluid img-thumbnail">
-  {% endif %}
-  </div>
+  <section class="row align-items-center">
+    <div id="image" class="col-sm-4">   
+    {% if bgame.imagePerso %}
+      <img src="{{ asset('uploads/images/'~ bgame.imagePerso) }}" id="image" class="img-fluid img-thumbnail">
+    {% else %}
+    <img src="{{bgame.imageBgg}}" id="image" class="img-fluid img-thumbnail">
+    {% endif %}
+    </div>
 
-  <div id="infos" class="col-sm-7">
+    <div id="infos" class="col-sm-8">
 
-   <h1 class="text-center">{{bgame.name}}</h1>
-  <p>Accessibility: {{bgame.difficulty.name}}</p>
-  <p>Playing Time: {{bgame.duration}} minutes </p>
-  <p>Number of Players : {{ bgame.minNbPlayers }} to {{ bgame.maxNbPlayers }} players</p>
+      <h1 class="text-center">{{bgame.name}}</h1>
+      <p>Accessibility: {{bgame.difficulty.name}}</p>
+      <p>Playing Time: {{bgame.duration}} minutes </p>
+      <p>Number of Players : {{ bgame.minNbPlayers }} to {{ bgame.maxNbPlayers }} players</p>
 
-<div>
-  <p>
-    <h3>Categories</h3>
-    <ul class="list-group list-group-horizontal">
-      {% for c in bgame.category %}
-      <li class="list-group-item list-group-item-action"> {{c.name}}</li>
-      {% endfor %}
-     </ul>
-  </p>
+      <p>
+        <h3>Categories</h3>
+        <ul class="list-group list-group-horizontal">
+          {% for c in bgame.category %}
+          <li class="list-group-item list-group-item-action"> {{c.name}}</li>
+          {% endfor %}
+        </ul>
+      </p>
 
-  <p>
-    <h3>Mechanics</h3>
-      <ul class="list-group list-group-horizontal">
-        {% for m in bgame.mechanism %}
-        <li class="list-group-item list-group-item-action"> {{m.name}}</li>
-      {% endfor %}
-      </ul>
-  </p>
+      <p>
+        <h3>Mechanics</h3>
+          <ul class="list-group list-group-horizontal">
+            {% for m in bgame.mechanism %}
+            <li class="list-group-item list-group-item-action"> {{m.name}}</li>
+          {% endfor %}
+          </ul>
+      </p>
+    </div>
+  </section>
 </div>
-  </div>
-</section>
+  <br>
 
-<br>
+  <section id="description">
+    <h3>Description</h3>
+      {{bgame.description | raw}}
 
-<div id="description">
+  </section>
 
-    {{bgame.description | raw}}
 
-</div>
-
-</div>
 
 
 {% endblock %}
