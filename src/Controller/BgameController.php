@@ -53,14 +53,15 @@ class BgameController extends AbstractController
                         $this->getParameter('img_directory'),
                         $newFilename
                     );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
+                } catch (FileException $e) { }
                 $bgame->setImagePerso($newFilename);
             }
             $manager->persist($bgame);
             $manager->flush();
-            return $this->redirectToRoute('list_bgames');
+
+            $this->addFlash('success', 'New game add.');
+
+            return $this->redirectToRoute('my_account');
         }
 
         return $this->render('admin/addBgame.html.twig', [

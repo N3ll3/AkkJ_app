@@ -51,7 +51,7 @@ class RegisterController extends AbstractController
 
             $this->addFlash('success', 'New member add.');
 
-            return $this->redirectToRoute('myaccount');
+            return $this->redirectToRoute('my_account');
         }
 
         return $this->render(
