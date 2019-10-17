@@ -26,7 +26,7 @@
    <h1 class="text-center">{{bgame.name}}</h1>
   <p>Accessibility: {{bgame.difficulty.name}}</p>
   <p>Playing Time: {{bgame.duration}} minutes </p>
-  <p>Numbre of Players : {{ bgame.minNbPlayers }} to {{ bgame.maxNbPlayers }} players</p>
+  <p>Number of Players : {{ bgame.minNbPlayers }} to {{ bgame.maxNbPlayers }} players</p>
 
 <div>
   <p>
@@ -52,7 +52,11 @@
 
 <br>
 
-<div id="description">{{bgame.description | raw}}</div>
+<div id="description">
+
+    {{bgame.description | raw}}
+
+</div>
 
 </div>
 

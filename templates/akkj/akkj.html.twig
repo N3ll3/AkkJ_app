@@ -10,42 +10,43 @@
 
 <div class="filter jumbotron">
 
- <div class="form-inline justify-content-center align-items-center ">
+      <div class="form-inline justify-content-center align-items-center ">
 
-{{form_start(filterForm,{'id':'filterForm'})}}
+      {{form_start(filterForm,{'id':'filterForm'})}}
 
-<div class="form-row">
-    <div class="col-auto">
-     <label for="mechanism">Playing Time (min)</label>
-      {{form_widget(filterForm.maxDuration)}}
-    
-    </div>
+      <div class="form-row justify-content-center align-items-center mt-3">
+          <div class="col-auto">
+          <label for="mechanism">Playing Time (min)</label>
+            {{form_widget(filterForm.maxDuration)}}
+          </div>
 
-      <div class="col-auto">
-      <label for="mechanism">Number of players</label>
-      {{form_widget(filterForm.nbPlayers)}}
-    </div>
+          <div class="col-auto">
+            <label for="mechanism">Number of players</label>
+            {{form_widget(filterForm.nbPlayers)}}
+          </div>
+      </div>    
 
-    <div class="col-auto">
-    <label for="mechanism">Difficulty</label>
-      {{form_widget(filterForm.difficulty)}}
-    </div>
+      <div class="form-row justify-content-center align-items-center mt-3">
+      
+          <div class="col-auto ">
+            <label for="mechanism">Difficulty</label>
+            {{form_widget(filterForm.difficulty)}}
+          </div>
 
-    <div class="col-auto">
-    <label for="mechanism">Mechanic</label>
-      {{form_widget(filterForm.mechanism)}}
-    </div>
+        <div class="col-auto ">
+          <label for="mechanism">Category</label>
+            {{form_widget(filterForm.category)}}
+          </div>
 
-    <div class="col-auto">
-     <label for="mechanism">Category</label>
-      {{form_widget(filterForm.category)}}
-    </div>
+          <div class="col-auto ">
+            <label for="mechanism">Mechanic</label>
+            {{form_widget(filterForm.mechanism)}}
+          </div>
+      </div>
 
-  </div>
-
-   <div class="form-row justify-content-center align-items-center mt-3">
-    
-    <button class="btn btn-primary" type="submit">What do we play ?</button>
+      <div class="form-row justify-content-center align-items-center mt-3">
+        
+        <button class="btn btn-primary" type="submit">What do we play ?</button>
  
   </div>
 
@@ -67,13 +68,12 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col"></th>
-     
-    <th scope="col">Playing Time</th>
+      <th scope="col">Playing Time</th>
       <th scope="col">Min Players</th>
       <th scope="col">Max Players</th>
-       <th scope="col">Difficulty</th>
+      <th scope="col">Difficulty</th>
       <th scope="col">Categories</th>
-       <th scope="col">Mecanics</th>
+      <th scope="col">Mechanics</th>
     </tr>
   </thead> 
   <tbody>

@@ -13,16 +13,13 @@ import Routing from "../../vendor/friendsofsymfony/jsrouting-bundle/Resources/pu
 
 Routing.setRoutingData(routes);
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require("jquery");
-
+// document.url
 const proxy = "http://localhost:8080/";
 
 $("#searchBGG").submit(e => {
   e.preventDefault();
   let bgameBGG = $("#bgameBGG").val();
 
-  // TODO : refacto avec function clearSelect()
   $("#bggame option").each(function() {
     $(this).remove();
   });
