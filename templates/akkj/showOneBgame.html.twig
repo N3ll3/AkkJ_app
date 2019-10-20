@@ -24,12 +24,12 @@
     <div id="infos" class="col-sm-8">
 
       <h1 class="text-center">{{bgame.name}}</h1>
-      <p>Accessibility: {{bgame.difficulty.name}}</p>
-      <p>Playing Time: {{bgame.duration}} minutes </p>
-      <p>Number of Players : {{ bgame.minNbPlayers }} to {{ bgame.maxNbPlayers }} players</p>
+      <p><strong>Accessibility :</strong> {{bgame.difficulty.name}}</p>
+      <p><strong>Playing Time:</strong> {{bgame.duration}} minutes </p>
+      <p><strong>Number of Players : </strong>{{ bgame.minNbPlayers }} to {{ bgame.maxNbPlayers }} players</p>
 
       <p>
-        <h3>Categories</h3>
+        <h4>Categories</h4>
         <ul class="list-group list-group-horizontal">
           {% for c in bgame.category %}
           <li class="list-group-item list-group-item-action"> {{c.name}}</li>
@@ -38,7 +38,7 @@
       </p>
 
       <p>
-        <h3>Mechanics</h3>
+        <h4>Mechanics</h4>
           <ul class="list-group list-group-horizontal">
             {% for m in bgame.mechanism %}
             <li class="list-group-item list-group-item-action"> {{m.name}}</li>
