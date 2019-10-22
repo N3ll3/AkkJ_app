@@ -130,10 +130,7 @@ $("#bggchoice").submit(e => {
 
       //Name
       $("#add_bgame_form_name").val(name);
-      const instance_name = "add_bgame_form_description";
-      CKEDITOR.instances[instance_name].insertHtml(
-        `<p>${descriptionWithoutbr}</p>`
-      );
+      $("#add_bgame_form_description").val(`${descriptionWithoutbr}`);
 
       //image
       $("#add_bgame_form_image_bgg")

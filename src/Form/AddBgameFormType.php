@@ -44,10 +44,7 @@ class AddBgameFormType extends AbstractType
                     ]
                 ]
             )
-            ->add('description', CKEditorType::class, [
-                'config_name' => 'basic_config',
-                'required'  => false
-            ])
+            ->add('description')
             ->add('duration',  IntegerType::class)
             ->add(
                 'minNbPlayers',

@@ -65,7 +65,11 @@ Add Game
     {% endif %}
 {% endif %}
 {{ form_row(addForm.image_perso, {'label':'My Image'}) }}
-{{ form_row(addForm.description)}}
+{{ form_row(addForm.description,{ 'attr': { 
+  'style' : 'width:100%', 
+  'rows' : '5', 
+  'cols' : '30' } } ) }}
+
 {{ form_row(addForm.duration)}}
 {{ form_row(addForm.minNbPlayers)}}
 {{ form_row(addForm.maxNbPlayers)}}
