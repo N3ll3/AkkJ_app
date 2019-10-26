@@ -13,7 +13,7 @@ import Routing from "../../vendor/friendsofsymfony/jsrouting-bundle/Resources/pu
 
 Routing.setRoutingData(routes);
 
-// document.url
+
 const proxy = "http://localhost:8080/";
 
 $("#searchBGG").submit(e => {
