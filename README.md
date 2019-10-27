@@ -1,6 +1,6 @@
 # AkkJ
 
-Appli permettant de créer sa propre ludothèque avec possibilité d'import  des jeux de sociétés par l'API de BGG (https://boardgamegeek.com/).
+Appli permettant de créer sa propre ludothèque avec possibilité d'import des jeux de sociétés par l'API de BGG (https://boardgamegeek.com/).
 
 Recherche de jeux avec filtres pour trouver A koi Kon Joue??
 
@@ -15,5 +15,7 @@ Recherche de jeux avec filtres pour trouver A koi Kon Joue??
 
 ## Comment installer :
 
-- faire un import des bases de données
+- faire un import des fichiers .sql situés dans le dossier databases
 - faire un `composer install`
+- compte admin provisoire : email admin2@yopmail.fr / mdp : qwerty
+  --NE PAS OUBLIE DE SUPPRIMER LE COMPTE ADMIN PROVISOIRE
