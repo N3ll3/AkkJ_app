@@ -10,10 +10,10 @@ Recherche de jeux avec filtres pour trouver A koi Kon Joue??
 - MySQL 5.7.19
 - Jquery 3.4.1
 - Symphony 4.2
-- Ckeditor
 - Webpack Encore
 - Bootstrap 4.3.1
 
 ## Comment installer :
 
+- faire un import des bases de données
 - faire un `composer install`
