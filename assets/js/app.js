@@ -13,8 +13,7 @@ import Routing from "../../vendor/friendsofsymfony/jsrouting-bundle/Resources/pu
 
 Routing.setRoutingData(routes);
 
-
-const proxy = "http://localhost:8080/";
+const proxy = "https://cors-anywhere.herokuapp.com/";
 
 $("#searchBGG").submit(e => {
   e.preventDefault();
