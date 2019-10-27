@@ -56,7 +56,7 @@ IF NOT EXISTS `user` (
 
 INSERT INTO `user`
   (`id`, `email
-`, `roles`, `password`, `username`) VALUES
+  `, `roles`, `password`, `username`) VALUES
 (15, 'admin2@yopmail.fr', '[\"ROLE_ADMIN\", \"ROLE_USER\"]', '$2y$13$tlOwyvbicJiwiuBWjuxubOyqSWDddgn.XsMrXRjLJEIkNX7kkn6yS', 'admin2');
 COMMIT;
 
